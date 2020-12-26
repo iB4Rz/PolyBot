@@ -128,5 +128,5 @@ class ConvexPolygon:
     @staticmethod
     def getOrientation(origin, c1, c2):
         p1 = [c2[0] - origin[0], c2[1] - origin[1]]
-        p2 = [c1[0] - origin[0], c1[0] - origin[1]]
+        p2 = [c1[0] - origin[0], c1[1] - origin[1]]
         return p1[0] * p2[1] - p2[0] * p1[1]
