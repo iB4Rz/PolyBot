@@ -78,11 +78,18 @@ class ConvexPolygon:
 
     # Get the coordinates of the centroid of a convex polygon
     def getCoordCentroid(self):
+        n = len(self.coordinates)
+        # empty
+        if n == 0:
+            return []
+        # monogon
+        if n == 1:
+            return self.coordinates[0]
         centroid = [0, 0]
         det = 0
-        for i in range(len(self.coordinates)):
+        for i in range(n):
             c1 = self.coordinates[i]
-            c2 = self.coordinates[(i + 1) % len(self.coordinates)]
+            c2 = self.coordinates[(i + 1) % n]
 
             # compute the determinant
             tempDet = c1[0] * c2[1] - c2[0] * c1[1]
@@ -90,14 +97,24 @@ class ConvexPolygon:
 
             centroid[0] += (c1[0] + c2[0]) * tempDet
             centroid[1] += (c1[1] + c2[1]) * tempDet
+            if n < 3:
+                break
 
         # divide by the total mass of the polygon
         centroid = map(lambda x: round(x / float(3 * det), 3), centroid)
         return centroid
 
     # Check if a convex polygon is regular
-    def isRegular(self, polygon):
-        print(polygon)
+    def isRegular(self):
+        dist = 0
+        for i in range(len(self.coordinates)):
+            c1 = self.coordinates[i]
+            c2 = self.coordinates[(i + 1) % len(self.coordinates)]
+            if i != 0:
+                if dist != ConvexPolygon.distance(c1, c2):
+                    return False
+            dist = ConvexPolygon.distance(c1, c2)
+        return True
 
     # Compute the intersection of two convex polygons
     def intersection(self, polygon1, polygon2):
@@ -108,8 +125,12 @@ class ConvexPolygon:
         print(polygon1)
 
     # Compute the bounding box of a convex polygon
-    def boudingBox(self, polygon):
-        print(polygon)
+    def boudingBox(self):
+        # empty
+        if len(self.coordinates) == 0:
+            return []
+        x_coord, y_coord = zip(*self.coordinates)
+        return [(min(x_coord), min(y_coord)), (max(x_coord), max(y_coord))]
 
     # Draw convex polygons (with colors) in a PNG image
     def draw(self, polygons):
