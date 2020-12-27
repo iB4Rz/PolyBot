@@ -1,3 +1,10 @@
+from PIL import Image, ImageDraw
+# from PIL import ImagePath
+
+RAW = 500
+RGB = 255
+
+
 class ConvexPolygon:
 
     coordinates = []
@@ -124,8 +131,9 @@ class ConvexPolygon:
             centroid[1] += (c1[1] + c2[1]) * tempDet
 
         # divide by the total mass of the polygon
-        centroid = map(lambda x: round(x / float(3 * det), 3), centroid)
-        return centroid
+        centroid[0] = round(centroid[0] / (3 * det), 3)
+        centroid[1] = round(centroid[1] / (3 * det), 3)
+        return tuple(centroid)
 
     # Check if a convex polygon is regular
     def isRegular(self):
@@ -141,38 +149,7 @@ class ConvexPolygon:
 
     # Compute the intersection of two convex polygons
     def intersection(self, polygon):
-        def inside(p):
-            return (c2[0]-c1[0])*(p[1]-c1[1]) > (c2[1]-c1[1])*(p[0]-c1[0])
-
-        def computeIntersection():
-            dc = [c1[0] - c2[0], c1[1] - c2[1]]
-            dp = [s[0] - e[0], s[1] - e[1]]
-            n1 = c1[0] * c2[1] - c1[1] * c2[0]
-            n2 = s[0] * e[1] - s[1] * e[0] 
-            n3 = 1.0 / (dc[0] * dp[1] - dc[1] * dp[0])
-            return [(n1*dp[0] - n2*dc[0]) * n3, (n1*dp[1] - n2*dc[1]) * n3]
-
-        result = self.coordinates
-        c1 = polygon.coordinates[-1]
-        print(c1)
-
-        for clipVertex in polygon.coordinates:
-            c2 = clipVertex
-            inputList = result
-            result = []
-            s = inputList[-1]
-
-            for subjecTVertex in inputList:
-                e = subjecTVertex
-                if inside(e):
-                    if not inside(s):
-                        result.append(computeIntersection())
-                    result.append(e)
-                elif inside(s):
-                    result.append(computeIntersection())
-                s = e
-            c1 = c2
-        return result
+        return self.union(polygon)
 
     # Compute the convex union of two convex polygons
     def union(self, polygon):
@@ -187,9 +164,15 @@ class ConvexPolygon:
         x_coord, y_coord = zip(*self.coordinates)
         return [(min(x_coord), min(y_coord)), (max(x_coord), max(y_coord))]
 
-    # Draw convex polygons (with colors) in a PNG image
-    def draw(self, polygons):
-        print(polygons)
+    def draw(colors, polygons):
+        im = Image.new('RGBA', (RAW, RAW))
+        draw = ImageDraw.Draw(im)
+        for c, p in zip(colors, polygons):
+            color = tuple([RGB * x for x in c])
+            polygon = tuple([(RAW * x[0], RAW - (RAW * x[1]))
+                            for x in p.coordinates])
+            draw.polygon(polygon, fill=color)
+        im.show()
 
     def printTest(self):
         for i in self.coordinates:

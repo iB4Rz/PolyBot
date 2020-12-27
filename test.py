@@ -2,11 +2,11 @@ import polygons
 
 
 def main():
-    cordenadas1 = [[1, 4], [5, 5], [5, 2], [3, 3], [3, 1], [9, 6], [7, 0], [0, 0]]
-    cordenadas2 = [[3, 3], [3, 1], [5, 2]]
+    cordenadas1 = [(0.1, 0.4), (0.5, 0.5), (0.5, 0.2), (0.3, 0.3), (0.3, 0.1), (0.9, 0.6), (0.7, 0), (0, 0)]
+    cordenadas2 = [(0.3, 0.3), (0.3, 0.1), (0.5, 0.2)]
     # cordenadas1 = [[2, 2.5], [1, 1.5]]
-    cordenadas3 = [[4, 2], [5, 4], [7, 4], [10, -1]]
-    point = [1.4, 1.9]
+    cordenadas3 = [(0.4, 0.2), (0.5, 0.4), (0.7, 0.4), (1, 0.1)]
+    point = (0.14, 0.19)
     polygon1 = polygons.ConvexPolygon(cordenadas1)
     polygon2 = polygons.ConvexPolygon(cordenadas2)
     polygon3 = polygons.ConvexPolygon(cordenadas3)
@@ -22,6 +22,11 @@ def main():
     print("Convex union: " + str(polygon1.union(polygon3)))
     print("Intersection: " + str(polygon1.intersection(polygon3)))
 
+    polygones = []
+    polygones.append(polygon1)
+    polygones.append(polygon3)
+    colors = [(1, 0, 0), (0, 1, 0)]
+    polygons.ConvexPolygon.draw(colors, polygones)
 
 if __name__ == "__main__":
     main()
