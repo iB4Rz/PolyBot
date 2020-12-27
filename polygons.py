@@ -1,7 +1,8 @@
 from PIL import Image, ImageDraw
 # from PIL import ImagePath
 
-RAW = 500
+RAW = 400
+SCALE = 398
 RGB = 255
 
 
@@ -162,16 +163,20 @@ class ConvexPolygon:
         if len(self.coordinates) == 0:
             return []
         x_coord, y_coord = zip(*self.coordinates)
-        return [(min(x_coord), min(y_coord)), (max(x_coord), max(y_coord))]
+        x_min = min(x_coord)
+        x_max = max(x_coord)
+        y_min = min(y_coord)
+        y_max = max(y_coord)
+        return [(x_min, y_min), (x_min, y_max), (x_max, y_max), (x_max, y_min)]
 
     def draw(colors, polygons):
-        im = Image.new('RGBA', (RAW, RAW))
+        im = Image.new('RGBA', (RAW, RAW), color=(255, 255, 255, 0))
         draw = ImageDraw.Draw(im)
         for c, p in zip(colors, polygons):
             color = tuple([RGB * x for x in c])
-            polygon = tuple([(RAW * x[0], RAW - (RAW * x[1]))
+            polygon = tuple([(SCALE * x[0], SCALE - (SCALE * x[1]))
                             for x in p.coordinates])
-            draw.polygon(polygon, fill=color)
+            draw.polygon(polygon, outline=color)
         im.show()
 
     def printTest(self):
