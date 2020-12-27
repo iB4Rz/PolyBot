@@ -9,11 +9,27 @@ class ConvexPolygon:
 
     # Check whether a point is inside another convex polygon
     def containsPoint(self, point):
+        n = len(self.coordinates)
+        # empty
+        if n == 0:
+            return False
+        # monogon
+        if n == 1:
+            return self.coordinates[0] == point
+        # digon
+        if n == 2:
+            c1 = self.coordinates[0]
+            c2 = self.coordinates[1]
+            d = ConvexPolygon.distance(c1, c2)
+            d1 = ConvexPolygon.distance(c1, point)
+            d2 = ConvexPolygon.distance(point, c2)
+            return d1 + d2 == d
+
         A, B, C = [], [], []
 
-        for i in range(len(self.coordinates)):
+        for i in range(n):
             c1 = self.coordinates[i]
-            c2 = self.coordinates[(i + 1) % len(self.coordinates)]
+            c2 = self.coordinates[(i + 1) % n]
 
             # calculate A, B and C
             a = -(c2[1] - c1[1])
@@ -85,6 +101,14 @@ class ConvexPolygon:
         # monogon
         if n == 1:
             return self.coordinates[0]
+        # digon
+        if n == 2:
+            c1 = self.coordinates[0]
+            c2 = self.coordinates[1]
+            c1[0] = round(float(c1[0] + c2[0]) / 2, 3)
+            c1[1] = round(float(c1[1] + c2[1]) / 2, 3)
+            return c1
+        
         centroid = [0, 0]
         det = 0
         for i in range(n):
@@ -97,8 +121,6 @@ class ConvexPolygon:
 
             centroid[0] += (c1[0] + c2[0]) * tempDet
             centroid[1] += (c1[1] + c2[1]) * tempDet
-            if n < 3:
-                break
 
         # divide by the total mass of the polygon
         centroid = map(lambda x: round(x / float(3 * det), 3), centroid)
@@ -143,9 +165,9 @@ class ConvexPolygon:
     # Compute the convex hull given a set of coordinates
     @staticmethod
     def convexHull(coordinates):
-        # empty, monogon and digon polygons skip
+        # empty and monogon skip
         if len(coordinates) < 2:
-            return sorted(coordinates)
+            return coordinates
 
         # get leftmost coordinate
         start = min(coordinates)
