@@ -1,5 +1,4 @@
 from PIL import Image, ImageDraw
-# from PIL import ImagePath
 
 RAW = 400
 SCALE = 398
@@ -184,14 +183,15 @@ class ConvexPolygon:
         '''Draw convex polygons (with colors)
         in a PNG image'''
 
-        image = Image.new('RGBA', (RAW, RAW), color=(255, 255, 255, 0))
+        image = Image.new('RGB', (RAW, RAW), color=(255, 255, 255))
         draw = ImageDraw.Draw(image)
         for c, p in zip(colors, polygons):
             color = tuple([RGB * x for x in c])
             polygon = tuple([(SCALE * x[0], SCALE - (SCALE * x[1]))
                             for x in p.coordinates])
             draw.polygon(polygon, outline=color)
-        image.show()
+        # image.show()
+        image.save("image.png")
 
     def printTest(self):
         for i in self.coordinates:
