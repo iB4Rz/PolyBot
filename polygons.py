@@ -16,7 +16,8 @@ class ConvexPolygon:
         # monogon
         if n == 1:
             return self.coordinates[0] == point
-        # digon
+        '''
+        # digon (tengo que cambiarlo)
         if n == 2:
             c1 = self.coordinates[0]
             c2 = self.coordinates[1]
@@ -24,7 +25,7 @@ class ConvexPolygon:
             d1 = ConvexPolygon.distance(c1, point)
             d2 = ConvexPolygon.distance(point, c2)
             return d1 + d2 == d
-
+        '''
         A, B, C = [], [], []
 
         for i in range(n):
@@ -108,7 +109,7 @@ class ConvexPolygon:
             c1[0] = round(float(c1[0] + c2[0]) / 2, 3)
             c1[1] = round(float(c1[1] + c2[1]) / 2, 3)
             return c1
-        
+
         centroid = [0, 0]
         det = 0
         for i in range(n):
@@ -139,12 +140,44 @@ class ConvexPolygon:
         return True
 
     # Compute the intersection of two convex polygons
-    def intersection(self, polygon1, polygon2):
-        print(polygon1)
+    def intersection(self, polygon):
+        def inside(p):
+            return (c2[0]-c1[0])*(p[1]-c1[1]) > (c2[1]-c1[1])*(p[0]-c1[0])
+
+        def computeIntersection():
+            dc = [c1[0] - c2[0], c1[1] - c2[1]]
+            dp = [s[0] - e[0], s[1] - e[1]]
+            n1 = c1[0] * c2[1] - c1[1] * c2[0]
+            n2 = s[0] * e[1] - s[1] * e[0] 
+            n3 = 1.0 / (dc[0] * dp[1] - dc[1] * dp[0])
+            return [(n1*dp[0] - n2*dc[0]) * n3, (n1*dp[1] - n2*dc[1]) * n3]
+
+        result = self.coordinates
+        c1 = polygon.coordinates[-1]
+        print(c1)
+
+        for clipVertex in polygon.coordinates:
+            c2 = clipVertex
+            inputList = result
+            result = []
+            s = inputList[-1]
+
+            for subjecTVertex in inputList:
+                e = subjecTVertex
+                if inside(e):
+                    if not inside(s):
+                        result.append(computeIntersection())
+                    result.append(e)
+                elif inside(s):
+                    result.append(computeIntersection())
+                s = e
+            c1 = c2
+        return result
 
     # Compute the convex union of two convex polygons
-    def union(self, polygon1, polygon2):
-        print(polygon1)
+    def union(self, polygon):
+        union = self.coordinates + polygon.coordinates
+        return ConvexPolygon.convexHull(union)
 
     # Compute the bounding box of a convex polygon
     def boudingBox(self):
