@@ -13,6 +13,7 @@ class ConvexPolygon:
         '''Construct a convex polygon given by
         the coordinates of a set of points'''
 
+        # tengo que normalizar las coord
         coordinates = ConvexPolygon.convexHull(coordinates)
         self.coordinates = coordinates
 
