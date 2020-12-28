@@ -2,19 +2,20 @@ grammar Polygons;
 
 root: expr EOF;
 
-expr: variable | operation | instruction;
+expr: variable | instruction;
 
 variable: ID ':=' operation
         //| ID ':=' coords
         ;
 
 operation: '(' operation ')'
-        | EXC NUM
+        // | EXC NUM
         | PAD operation
         | operation MUL operation
         | operation MES operation
         | coords
         | ID
+        | R
         | NUM
         ;
 
@@ -29,7 +30,8 @@ instruction:  printPol
             | draw
             ;
 
-coords: '[' ( NUM NUM )* ']';
+// coords: '[' ( (NUM | R) (NUM | R) )* ']';
+coords: '[' ( (NUM | R) (NUM | R) )* ']';
 colorRGB: '{' NUM NUM NUM '}';
 img: '"image.png"';
 lines: '"---"';
@@ -57,7 +59,7 @@ draw: 'draw' img ',' polygons;
 
 NUM: [0-9]+;
 ID : [a-zA-Z][a-zA-Z0-9]*;
-// R: [0-9]+{.[0-9]*}|.[0-9]+;
+R: [0-9]* '.' [0-9]+;
 
 MUL: '*';   // represents the intersection of two polygons.
 MES: '+';   // represents the convex union of two polygons.

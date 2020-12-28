@@ -2,6 +2,7 @@ from antlr4 import *
 from PolygonsParser import PolygonsParser
 from PolygonsLexer import PolygonsLexer
 from PolygonsVisitor import PolygonsVisitor
+from EvalVisitor import EvalVisitor
 
 
 input_stream = InputStream(input('? '))
@@ -15,5 +16,5 @@ if parser.getNumberOfSyntaxErrors() > 0:
     raise Exception('Error de sintaxi')
 
 print(tree.toStringTree(recog=parser))
-# visitor = PolygonsVisitor()
-# visitor.visit(tree)
+visitor = EvalVisitor()
+visitor.visit(tree)

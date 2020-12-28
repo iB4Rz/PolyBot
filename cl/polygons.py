@@ -196,9 +196,6 @@ class ConvexPolygon:
         # image.show()
         image.save("image.png")
 
-    def addColor(self, color):
-        self.color = color
-
     def printTest(self):
         for i in self.coordinates:
             print(i)
