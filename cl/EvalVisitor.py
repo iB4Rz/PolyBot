@@ -27,14 +27,14 @@ class EvalVisitor(PolygonsVisitor):
             if inf is not None:
                 res = self.visit(list[i])
                 if type(res) is tuple:
-                    print(' '.join([str(i) for i in res]))
+                    print(' '.join([str("%0.3f" % i) for i in res]))
                 elif type(res) is bool:
                     if res:
                         print("yes")
                     else:
                         print("no")
                 else:
-                    print(res)
+                    print("%0.3f" % res)
 
     # Visit a parse tree produced by PolygonsParser#expr.
     def visitExpr(self, ctx: PolygonsParser.ExprContext):
@@ -74,14 +74,14 @@ class EvalVisitor(PolygonsVisitor):
             elif list[1].getText() == '*':
                 pol1 = self.visit(list[0])
                 pol2 = self.visit(list[2])
-                pol1.intersection(pol2)
-                return pol1
+                pol = pol1.intersection(pol2)
+                return ConvexPolygon(pol)
 
             elif list[1].getText() == '+':
                 pol1 = self.visit(list[0])
                 pol2 = self.visit(list[2])
-                pol1.union(pol2)
-                return pol1
+                pol = pol1.union(pol2)
+                return ConvexPolygon(pol)
 
     # Visit a parse tree produced by PolygonsParser#instruction.
     def visitInstruction(self, ctx: PolygonsParser.InstructionContext):
@@ -131,7 +131,7 @@ class EvalVisitor(PolygonsVisitor):
         list = [n for n in ctx.getChildren()]
         pol = self.visit(list[1])
         coord = pol.coordinates
-        print(' '.join([str(i) for tup in coord for i in tup]))
+        print(' '.join([str("%0.3f" % i) for tup in coord for i in tup]))
 
     # Visit a parse tree produced by PolygonsParser#area.
     def visitArea(self, ctx: PolygonsParser.AreaContext):

@@ -3,6 +3,7 @@ from PIL import Image, ImageDraw
 RAW = 400
 SCALE = 398
 RGB = 255
+DECIMAL_NUM = 3
 
 
 class ConvexPolygon:
@@ -66,18 +67,7 @@ class ConvexPolygon:
         '''Get the number of vertices
         and edges of a convex polygon'''
 
-        n = len(self.coordinates)
-        # empty polygon
-        if n == 0:
-            return 0, 0
-        # monogon
-        elif n == 1:
-            return 1, 0
-        # digon
-        elif n == 2:
-            return 2, 1
-        else:
-            return n, n
+        return len(self.coordinates)
 
     def getPerimeter(self):
         '''Get the length of the perimeter of
@@ -88,7 +78,7 @@ class ConvexPolygon:
             c1 = self.coordinates[i]
             c2 = self.coordinates[(i + 1) % len(self.coordinates)]
             length += ConvexPolygon.distance(c1, c2)
-        return round(length, 3)
+        return round(length, DECIMAL_NUM)
 
     def getArea(self):
         ''' Get the area of a convex polygon'''
@@ -105,7 +95,7 @@ class ConvexPolygon:
             prod = self.coordinates[index][0] * self.coordinates[i][1]
             sum2 += prod
 
-        return round(abs(sum1 - sum2) / 2, 3)
+        return round(abs(sum1 - sum2) / 2, DECIMAL_NUM)
 
     def getCoordCentroid(self):
         '''Get the coordinates of the centroid of
@@ -122,8 +112,8 @@ class ConvexPolygon:
         if n == 2:
             c1 = self.coordinates[0]
             c2 = self.coordinates[1]
-            c1[0] = round(float(c1[0] + c2[0]) / 2, 3)
-            c1[1] = round(float(c1[1] + c2[1]) / 2, 3)
+            c1[0] = round(float(c1[0] + c2[0]) / 2, DECIMAL_NUM)
+            c1[1] = round(float(c1[1] + c2[1]) / 2, DECIMAL_NUM)
             return c1
 
         centroid = [0, 0]
@@ -139,8 +129,8 @@ class ConvexPolygon:
             centroid[0] += (c1[0] + c2[0]) * det_aux
             centroid[1] += (c1[1] + c2[1]) * det_aux
 
-        centroid[0] = round(centroid[0] / (3 * det), 3)
-        centroid[1] = round(centroid[1] / (3 * det), 3)
+        centroid[0] = round(centroid[0] / (3 * det), DECIMAL_NUM)
+        centroid[1] = round(centroid[1] / (3 * det), DECIMAL_NUM)
         return tuple(centroid)
 
     def isRegular(self):
@@ -200,12 +190,10 @@ class ConvexPolygon:
         image.save("image.png")
 
     def addColor(self, color):
+        ''' Add color to a convex polygon'''
+
         colorRGB = tuple([RGB * x for x in color])
         self.color = colorRGB
-
-    def printTest(self):
-        for i in self.coordinates:
-            print(i)
 
     @staticmethod
     def convexHull(coordinates):

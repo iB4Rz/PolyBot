@@ -47,15 +47,6 @@ inside: 'inside' operation ',' operation;
 equal: 'equal' operation ',' operation;
 draw: 'draw' img ',' polygons;
 
-// printPol: 'print' (ID | operation | lines);
-// area: 'area' ID;
-// perimeter: 'perimeter' ID;
-// vertices: 'vertices' ID;
-// centroid: 'centroid' ID;
-// color: 'color' ID ',' colorRGB;
-//  inside: 'inside' ID ',' ID;
-// equal: 'equal' ID ',' ID;
-// draw: 'draw' img ',' polygons;
 
 NUM: [0-9]+;
 ID : [a-zA-Z][a-zA-Z0-9]*;

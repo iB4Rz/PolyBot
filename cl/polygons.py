@@ -66,18 +66,7 @@ class ConvexPolygon:
         '''Get the number of vertices
         and edges of a convex polygon'''
 
-        n = len(self.coordinates)
-        # empty polygon
-        if n == 0:
-            return 0, 0
-        # monogon
-        elif n == 1:
-            return 1, 0
-        # digon
-        elif n == 2:
-            return 2, 1
-        else:
-            return n, n
+        return len(self.coordinates)
 
     def getPerimeter(self):
         '''Get the length of the perimeter of
@@ -200,12 +189,10 @@ class ConvexPolygon:
         image.save("image.png")
 
     def addColor(self, color):
+        ''' Add color to a convex polygon'''
+
         colorRGB = tuple([RGB * x for x in color])
         self.color = colorRGB
-
-    def printTest(self):
-        for i in self.coordinates:
-            print(i)
 
     @staticmethod
     def convexHull(coordinates):
