@@ -49,8 +49,8 @@ class PolygonsVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PolygonsParser#lines.
-    def visitLines(self, ctx:PolygonsParser.LinesContext):
+    # Visit a parse tree produced by PolygonsParser#text.
+    def visitText(self, ctx:PolygonsParser.TextContext):
         return self.visitChildren(ctx)
 
 

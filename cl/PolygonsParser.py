@@ -7,8 +7,8 @@ import sys
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\36")
-        buf.write("\u009a\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\37")
+        buf.write("\u00a2\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\3\2\6\2*\n\2\r\2\16\2+\3\2\3\2\3\3\3\3\5\3")
@@ -16,48 +16,52 @@ def serializedATN():
         buf.write("\5\3\5\5\5A\n\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5I\n\5\f\5\16")
         buf.write("\5L\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6W\n\6")
         buf.write("\3\7\3\7\3\7\7\7\\\n\7\f\7\16\7_\13\7\3\7\3\7\3\b\3\b")
-        buf.write("\3\b\3\b\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\3\13\7\13p")
-        buf.write("\n\13\f\13\16\13s\13\13\3\f\3\f\3\f\5\fx\n\f\3\r\3\r\3")
-        buf.write("\r\3\16\3\16\3\16\3\17\3\17\3\17\3\20\3\20\3\20\3\21\3")
-        buf.write("\21\3\21\3\21\3\21\3\22\3\22\3\22\3\22\3\22\3\23\3\23")
-        buf.write("\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\2\3\b\25")
-        buf.write("\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&\2\3\4\2\26")
-        buf.write("\26\30\30\2\u0098\2)\3\2\2\2\4\61\3\2\2\2\6\63\3\2\2\2")
-        buf.write("\b@\3\2\2\2\nV\3\2\2\2\fX\3\2\2\2\16b\3\2\2\2\20h\3\2")
-        buf.write("\2\2\22j\3\2\2\2\24l\3\2\2\2\26t\3\2\2\2\30y\3\2\2\2\32")
-        buf.write("|\3\2\2\2\34\177\3\2\2\2\36\u0082\3\2\2\2 \u0085\3\2\2")
-        buf.write("\2\"\u008a\3\2\2\2$\u008f\3\2\2\2&\u0094\3\2\2\2(*\5\4")
-        buf.write("\3\2)(\3\2\2\2*+\3\2\2\2+)\3\2\2\2+,\3\2\2\2,-\3\2\2\2")
-        buf.write("-.\7\2\2\3.\3\3\2\2\2/\62\5\6\4\2\60\62\5\n\6\2\61/\3")
-        buf.write("\2\2\2\61\60\3\2\2\2\62\5\3\2\2\2\63\64\7\27\2\2\64\65")
-        buf.write("\7\3\2\2\65\66\5\b\5\2\66\7\3\2\2\2\678\b\5\1\289\7\4")
-        buf.write("\2\29:\5\b\5\2:;\7\5\2\2;A\3\2\2\2<=\7\33\2\2=A\5\b\5")
-        buf.write("\7>A\5\f\7\2?A\7\27\2\2@\67\3\2\2\2@<\3\2\2\2@>\3\2\2")
-        buf.write("\2@?\3\2\2\2AJ\3\2\2\2BC\f\6\2\2CD\7\31\2\2DI\5\b\5\7")
-        buf.write("EF\f\5\2\2FG\7\32\2\2GI\5\b\5\6HB\3\2\2\2HE\3\2\2\2IL")
-        buf.write("\3\2\2\2JH\3\2\2\2JK\3\2\2\2K\t\3\2\2\2LJ\3\2\2\2MW\5")
-        buf.write("\26\f\2NW\5\30\r\2OW\5\32\16\2PW\5\34\17\2QW\5\36\20\2")
-        buf.write("RW\5 \21\2SW\5\"\22\2TW\5$\23\2UW\5&\24\2VM\3\2\2\2VN")
-        buf.write("\3\2\2\2VO\3\2\2\2VP\3\2\2\2VQ\3\2\2\2VR\3\2\2\2VS\3\2")
-        buf.write("\2\2VT\3\2\2\2VU\3\2\2\2W\13\3\2\2\2X]\7\6\2\2YZ\t\2\2")
-        buf.write("\2Z\\\t\2\2\2[Y\3\2\2\2\\_\3\2\2\2][\3\2\2\2]^\3\2\2\2")
-        buf.write("^`\3\2\2\2_]\3\2\2\2`a\7\7\2\2a\r\3\2\2\2bc\7\b\2\2cd")
-        buf.write("\7\26\2\2de\7\26\2\2ef\7\26\2\2fg\7\t\2\2g\17\3\2\2\2")
-        buf.write("hi\7\n\2\2i\21\3\2\2\2jk\7\13\2\2k\23\3\2\2\2lq\5\b\5")
-        buf.write("\2mn\7\f\2\2np\5\b\5\2om\3\2\2\2ps\3\2\2\2qo\3\2\2\2q")
-        buf.write("r\3\2\2\2r\25\3\2\2\2sq\3\2\2\2tw\7\r\2\2ux\5\b\5\2vx")
-        buf.write("\5\22\n\2wu\3\2\2\2wv\3\2\2\2x\27\3\2\2\2yz\7\16\2\2z")
-        buf.write("{\5\b\5\2{\31\3\2\2\2|}\7\17\2\2}~\5\b\5\2~\33\3\2\2\2")
-        buf.write("\177\u0080\7\20\2\2\u0080\u0081\5\b\5\2\u0081\35\3\2\2")
-        buf.write("\2\u0082\u0083\7\21\2\2\u0083\u0084\5\b\5\2\u0084\37\3")
-        buf.write("\2\2\2\u0085\u0086\7\22\2\2\u0086\u0087\5\b\5\2\u0087")
-        buf.write("\u0088\7\f\2\2\u0088\u0089\5\16\b\2\u0089!\3\2\2\2\u008a")
-        buf.write("\u008b\7\23\2\2\u008b\u008c\5\b\5\2\u008c\u008d\7\f\2")
-        buf.write("\2\u008d\u008e\5\b\5\2\u008e#\3\2\2\2\u008f\u0090\7\24")
-        buf.write("\2\2\u0090\u0091\5\b\5\2\u0091\u0092\7\f\2\2\u0092\u0093")
-        buf.write("\5\b\5\2\u0093%\3\2\2\2\u0094\u0095\7\25\2\2\u0095\u0096")
-        buf.write("\5\20\t\2\u0096\u0097\7\f\2\2\u0097\u0098\5\24\13\2\u0098")
-        buf.write("\'\3\2\2\2\13+\61@HJV]qw")
+        buf.write("\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\n\3\n\6\no\n\n\r\n")
+        buf.write("\16\np\3\n\3\n\3\13\3\13\3\13\7\13x\n\13\f\13\16\13{\13")
+        buf.write("\13\3\f\3\f\3\f\5\f\u0080\n\f\3\r\3\r\3\r\3\16\3\16\3")
+        buf.write("\16\3\17\3\17\3\17\3\20\3\20\3\20\3\21\3\21\3\21\3\21")
+        buf.write("\3\21\3\22\3\22\3\22\3\22\3\22\3\23\3\23\3\23\3\23\3\23")
+        buf.write("\3\24\3\24\3\24\3\24\3\24\3\24\2\3\b\25\2\4\6\b\n\f\16")
+        buf.write("\20\22\24\26\30\32\34\36 \"$&\2\4\4\2\26\26\30\30\4\2")
+        buf.write("\27\27\31\31\2\u00a1\2)\3\2\2\2\4\61\3\2\2\2\6\63\3\2")
+        buf.write("\2\2\b@\3\2\2\2\nV\3\2\2\2\fX\3\2\2\2\16b\3\2\2\2\20h")
+        buf.write("\3\2\2\2\22l\3\2\2\2\24t\3\2\2\2\26|\3\2\2\2\30\u0081")
+        buf.write("\3\2\2\2\32\u0084\3\2\2\2\34\u0087\3\2\2\2\36\u008a\3")
+        buf.write("\2\2\2 \u008d\3\2\2\2\"\u0092\3\2\2\2$\u0097\3\2\2\2&")
+        buf.write("\u009c\3\2\2\2(*\5\4\3\2)(\3\2\2\2*+\3\2\2\2+)\3\2\2\2")
+        buf.write("+,\3\2\2\2,-\3\2\2\2-.\7\2\2\3.\3\3\2\2\2/\62\5\6\4\2")
+        buf.write("\60\62\5\n\6\2\61/\3\2\2\2\61\60\3\2\2\2\62\5\3\2\2\2")
+        buf.write("\63\64\7\27\2\2\64\65\7\3\2\2\65\66\5\b\5\2\66\7\3\2\2")
+        buf.write("\2\678\b\5\1\289\7\4\2\29:\5\b\5\2:;\7\5\2\2;A\3\2\2\2")
+        buf.write("<=\7\34\2\2=A\5\b\5\7>A\5\f\7\2?A\7\27\2\2@\67\3\2\2\2")
+        buf.write("@<\3\2\2\2@>\3\2\2\2@?\3\2\2\2AJ\3\2\2\2BC\f\6\2\2CD\7")
+        buf.write("\32\2\2DI\5\b\5\7EF\f\5\2\2FG\7\33\2\2GI\5\b\5\6HB\3\2")
+        buf.write("\2\2HE\3\2\2\2IL\3\2\2\2JH\3\2\2\2JK\3\2\2\2K\t\3\2\2")
+        buf.write("\2LJ\3\2\2\2MW\5\26\f\2NW\5\30\r\2OW\5\32\16\2PW\5\34")
+        buf.write("\17\2QW\5\36\20\2RW\5 \21\2SW\5\"\22\2TW\5$\23\2UW\5&")
+        buf.write("\24\2VM\3\2\2\2VN\3\2\2\2VO\3\2\2\2VP\3\2\2\2VQ\3\2\2")
+        buf.write("\2VR\3\2\2\2VS\3\2\2\2VT\3\2\2\2VU\3\2\2\2W\13\3\2\2\2")
+        buf.write("X]\7\6\2\2YZ\t\2\2\2Z\\\t\2\2\2[Y\3\2\2\2\\_\3\2\2\2]")
+        buf.write("[\3\2\2\2]^\3\2\2\2^`\3\2\2\2_]\3\2\2\2`a\7\7\2\2a\r\3")
+        buf.write("\2\2\2bc\7\b\2\2cd\7\26\2\2de\7\26\2\2ef\7\26\2\2fg\7")
+        buf.write("\t\2\2g\17\3\2\2\2hi\7\n\2\2ij\7\27\2\2jk\7\13\2\2k\21")
+        buf.write("\3\2\2\2ln\7\n\2\2mo\t\3\2\2nm\3\2\2\2op\3\2\2\2pn\3\2")
+        buf.write("\2\2pq\3\2\2\2qr\3\2\2\2rs\7\n\2\2s\23\3\2\2\2ty\5\b\5")
+        buf.write("\2uv\7\f\2\2vx\5\b\5\2wu\3\2\2\2x{\3\2\2\2yw\3\2\2\2y")
+        buf.write("z\3\2\2\2z\25\3\2\2\2{y\3\2\2\2|\177\7\r\2\2}\u0080\5")
+        buf.write("\b\5\2~\u0080\5\22\n\2\177}\3\2\2\2\177~\3\2\2\2\u0080")
+        buf.write("\27\3\2\2\2\u0081\u0082\7\16\2\2\u0082\u0083\5\b\5\2\u0083")
+        buf.write("\31\3\2\2\2\u0084\u0085\7\17\2\2\u0085\u0086\5\b\5\2\u0086")
+        buf.write("\33\3\2\2\2\u0087\u0088\7\20\2\2\u0088\u0089\5\b\5\2\u0089")
+        buf.write("\35\3\2\2\2\u008a\u008b\7\21\2\2\u008b\u008c\5\b\5\2\u008c")
+        buf.write("\37\3\2\2\2\u008d\u008e\7\22\2\2\u008e\u008f\5\b\5\2\u008f")
+        buf.write("\u0090\7\f\2\2\u0090\u0091\5\16\b\2\u0091!\3\2\2\2\u0092")
+        buf.write("\u0093\7\23\2\2\u0093\u0094\5\b\5\2\u0094\u0095\7\f\2")
+        buf.write("\2\u0095\u0096\5\b\5\2\u0096#\3\2\2\2\u0097\u0098\7\24")
+        buf.write("\2\2\u0098\u0099\5\b\5\2\u0099\u009a\7\f\2\2\u009a\u009b")
+        buf.write("\5\b\5\2\u009b%\3\2\2\2\u009c\u009d\7\25\2\2\u009d\u009e")
+        buf.write("\5\20\t\2\u009e\u009f\7\f\2\2\u009f\u00a0\5\24\13\2\u00a0")
+        buf.write("\'\3\2\2\2\f+\61@HJV]py\177")
         return buf.getvalue()
 
 
@@ -72,9 +76,9 @@ class PolygonsParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "':='", "'('", "')'", "'['", "']'", "'{'", 
-                     "'}'", "'\"image.png\"'", "'\"---\"'", "','", "'print'", 
-                     "'area'", "'perimeter'", "'vertices'", "'centroid'", 
-                     "'color'", "'inside'", "'equal'", "'draw'", "<INVALID>", 
+                     "'}'", "'\"'", "'.png\"'", "','", "'print'", "'area'", 
+                     "'perimeter'", "'vertices'", "'centroid'", "'color'", 
+                     "'inside'", "'equal'", "'draw'", "<INVALID>", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "'*'", "'+'", "'#'", "'!'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
@@ -82,8 +86,8 @@ class PolygonsParser ( Parser ):
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "NUM", "ID", "R", "MUL", "MES", "PAD", "EXC", "COMMENT", 
-                      "WS" ]
+                      "NUM", "ID", "R", "G", "MUL", "MES", "PAD", "EXC", 
+                      "LINE_COMMENT", "WS" ]
 
     RULE_root = 0
     RULE_expr = 1
@@ -93,7 +97,7 @@ class PolygonsParser ( Parser ):
     RULE_coords = 5
     RULE_colorRGB = 6
     RULE_img = 7
-    RULE_lines = 8
+    RULE_text = 8
     RULE_polygons = 9
     RULE_printPol = 10
     RULE_area = 11
@@ -106,7 +110,7 @@ class PolygonsParser ( Parser ):
     RULE_draw = 18
 
     ruleNames =  [ "root", "expr", "variable", "operation", "instruction", 
-                   "coords", "colorRGB", "img", "lines", "polygons", "printPol", 
+                   "coords", "colorRGB", "img", "text", "polygons", "printPol", 
                    "area", "perimeter", "vertices", "centroid", "color", 
                    "inside", "equal", "draw" ]
 
@@ -133,12 +137,13 @@ class PolygonsParser ( Parser ):
     NUM=20
     ID=21
     R=22
-    MUL=23
-    MES=24
-    PAD=25
-    EXC=26
-    COMMENT=27
-    WS=28
+    G=23
+    MUL=24
+    MES=25
+    PAD=26
+    EXC=27
+    LINE_COMMENT=28
+    WS=29
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -676,6 +681,8 @@ class PolygonsParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def ID(self):
+            return self.getToken(PolygonsParser.ID, 0)
 
         def getRuleIndex(self):
             return PolygonsParser.RULE_img
@@ -697,6 +704,10 @@ class PolygonsParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 102
             self.match(PolygonsParser.T__7)
+            self.state = 103
+            self.match(PolygonsParser.ID)
+            self.state = 104
+            self.match(PolygonsParser.T__8)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -705,33 +716,64 @@ class PolygonsParser ( Parser ):
             self.exitRule()
         return localctx
 
-    class LinesContext(ParserRuleContext):
+    class TextContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def ID(self, i:int=None):
+            if i is None:
+                return self.getTokens(PolygonsParser.ID)
+            else:
+                return self.getToken(PolygonsParser.ID, i)
+
+        def G(self, i:int=None):
+            if i is None:
+                return self.getTokens(PolygonsParser.G)
+            else:
+                return self.getToken(PolygonsParser.G, i)
 
         def getRuleIndex(self):
-            return PolygonsParser.RULE_lines
+            return PolygonsParser.RULE_text
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitLines" ):
-                return visitor.visitLines(self)
+            if hasattr( visitor, "visitText" ):
+                return visitor.visitText(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def lines(self):
+    def text(self):
 
-        localctx = PolygonsParser.LinesContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 16, self.RULE_lines)
+        localctx = PolygonsParser.TextContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 16, self.RULE_text)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 104
-            self.match(PolygonsParser.T__8)
+            self.state = 106
+            self.match(PolygonsParser.T__7)
+            self.state = 108 
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while True:
+                self.state = 107
+                _la = self._input.LA(1)
+                if not(_la==PolygonsParser.ID or _la==PolygonsParser.G):
+                    self._errHandler.recoverInline(self)
+                else:
+                    self._errHandler.reportMatch(self)
+                    self.consume()
+                self.state = 110 
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if not (_la==PolygonsParser.ID or _la==PolygonsParser.G):
+                    break
+
+            self.state = 112
+            self.match(PolygonsParser.T__7)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -772,17 +814,17 @@ class PolygonsParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 106
+            self.state = 114
             self.operation(0)
-            self.state = 111
+            self.state = 119
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==PolygonsParser.T__9:
-                self.state = 107
+                self.state = 115
                 self.match(PolygonsParser.T__9)
-                self.state = 108
+                self.state = 116
                 self.operation(0)
-                self.state = 113
+                self.state = 121
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -804,8 +846,8 @@ class PolygonsParser ( Parser ):
             return self.getTypedRuleContext(PolygonsParser.OperationContext,0)
 
 
-        def lines(self):
-            return self.getTypedRuleContext(PolygonsParser.LinesContext,0)
+        def text(self):
+            return self.getTypedRuleContext(PolygonsParser.TextContext,0)
 
 
         def getRuleIndex(self):
@@ -826,18 +868,18 @@ class PolygonsParser ( Parser ):
         self.enterRule(localctx, 20, self.RULE_printPol)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 114
+            self.state = 122
             self.match(PolygonsParser.T__10)
-            self.state = 117
+            self.state = 125
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [PolygonsParser.T__1, PolygonsParser.T__3, PolygonsParser.ID, PolygonsParser.PAD]:
-                self.state = 115
+                self.state = 123
                 self.operation(0)
                 pass
-            elif token in [PolygonsParser.T__8]:
-                self.state = 116
-                self.lines()
+            elif token in [PolygonsParser.T__7]:
+                self.state = 124
+                self.text()
                 pass
             else:
                 raise NoViableAltException(self)
@@ -878,9 +920,9 @@ class PolygonsParser ( Parser ):
         self.enterRule(localctx, 22, self.RULE_area)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 119
+            self.state = 127
             self.match(PolygonsParser.T__11)
-            self.state = 120
+            self.state = 128
             self.operation(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -918,9 +960,9 @@ class PolygonsParser ( Parser ):
         self.enterRule(localctx, 24, self.RULE_perimeter)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 122
+            self.state = 130
             self.match(PolygonsParser.T__12)
-            self.state = 123
+            self.state = 131
             self.operation(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -958,9 +1000,9 @@ class PolygonsParser ( Parser ):
         self.enterRule(localctx, 26, self.RULE_vertices)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 125
+            self.state = 133
             self.match(PolygonsParser.T__13)
-            self.state = 126
+            self.state = 134
             self.operation(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -998,9 +1040,9 @@ class PolygonsParser ( Parser ):
         self.enterRule(localctx, 28, self.RULE_centroid)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 128
+            self.state = 136
             self.match(PolygonsParser.T__14)
-            self.state = 129
+            self.state = 137
             self.operation(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -1042,13 +1084,13 @@ class PolygonsParser ( Parser ):
         self.enterRule(localctx, 30, self.RULE_color)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 131
+            self.state = 139
             self.match(PolygonsParser.T__15)
-            self.state = 132
+            self.state = 140
             self.operation(0)
-            self.state = 133
+            self.state = 141
             self.match(PolygonsParser.T__9)
-            self.state = 134
+            self.state = 142
             self.colorRGB()
         except RecognitionException as re:
             localctx.exception = re
@@ -1089,13 +1131,13 @@ class PolygonsParser ( Parser ):
         self.enterRule(localctx, 32, self.RULE_inside)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 136
+            self.state = 144
             self.match(PolygonsParser.T__16)
-            self.state = 137
+            self.state = 145
             self.operation(0)
-            self.state = 138
+            self.state = 146
             self.match(PolygonsParser.T__9)
-            self.state = 139
+            self.state = 147
             self.operation(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -1136,13 +1178,13 @@ class PolygonsParser ( Parser ):
         self.enterRule(localctx, 34, self.RULE_equal)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 141
+            self.state = 149
             self.match(PolygonsParser.T__17)
-            self.state = 142
+            self.state = 150
             self.operation(0)
-            self.state = 143
+            self.state = 151
             self.match(PolygonsParser.T__9)
-            self.state = 144
+            self.state = 152
             self.operation(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -1184,13 +1226,13 @@ class PolygonsParser ( Parser ):
         self.enterRule(localctx, 36, self.RULE_draw)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 146
+            self.state = 154
             self.match(PolygonsParser.T__18)
-            self.state = 147
+            self.state = 155
             self.img()
-            self.state = 148
+            self.state = 156
             self.match(PolygonsParser.T__9)
-            self.state = 149
+            self.state = 157
             self.polygons()
         except RecognitionException as re:
             localctx.exception = re

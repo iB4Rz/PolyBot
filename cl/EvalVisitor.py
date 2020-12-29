@@ -114,8 +114,10 @@ class EvalVisitor(PolygonsVisitor):
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by PolygonsParser#lines.
-    def visitLines(self, ctx: PolygonsParser.LinesContext):
-        return self.visitChildren(ctx)
+    def visitText(self, ctx: PolygonsParser.TextContext):
+        list = [n for n in ctx.getChildren()]
+        text = list[1].getText()
+        return text
 
     # Visit a parse tree produced by PolygonsParser#polygons.
     def visitPolygons(self, ctx: PolygonsParser.PolygonsContext):
@@ -130,8 +132,11 @@ class EvalVisitor(PolygonsVisitor):
     def visitPrintPol(self, ctx: PolygonsParser.PrintPolContext):
         list = [n for n in ctx.getChildren()]
         pol = self.visit(list[1])
-        coord = pol.coordinates
-        print(' '.join([str("%0.3f" % i) for tup in coord for i in tup]))
+        if type(pol) is str:
+            print(pol)
+        else:
+            coord = pol.coordinates
+            print(' '.join([str("%0.3f" % i) for tup in coord for i in tup]))
 
     # Visit a parse tree produced by PolygonsParser#area.
     def visitArea(self, ctx: PolygonsParser.AreaContext):
@@ -190,9 +195,10 @@ class EvalVisitor(PolygonsVisitor):
     # Visit a parse tree produced by PolygonsParser#draw.
     def visitDraw(self, ctx: PolygonsParser.DrawContext):
         list = [n for n in ctx.getChildren()]
+        nameImg = list[1].getText().replace('"', '')
         polygons = []
         polygons = self.visit(list[3])
-        ConvexPolygon.draw(polygons)
+        ConvexPolygon.draw(polygons, nameImg)
 
 
 del PolygonsParser

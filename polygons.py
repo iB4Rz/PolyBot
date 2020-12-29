@@ -177,7 +177,7 @@ class ConvexPolygon:
 
         return self.coordinates == polygon.coordinates
 
-    def draw(polygons):
+    def draw(polygons, nameImg):
         '''Draw convex polygons (with colors)
         in a PNG image'''
 
@@ -187,7 +187,7 @@ class ConvexPolygon:
             polygon = tuple([(SCALE * x[0], SCALE - (SCALE * x[1]))
                             for x in i.coordinates])
             draw.polygon(polygon, outline=i.color)
-        image.save("image.png")
+        image.save(nameImg)
 
     def addColor(self, color):
         ''' Add color to a convex polygon'''
