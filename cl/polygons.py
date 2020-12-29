@@ -168,7 +168,7 @@ class ConvexPolygon:
         union = self.coordinates + polygon.coordinates
         return ConvexPolygon.convexHull(union)
 
-    def boudingBox(self):
+    def boundingBox(self):
         '''Compute the bounding box of a convex polygon'''
 
         # empty
@@ -196,7 +196,7 @@ class ConvexPolygon:
         for i in polygons:
             polygon = tuple([(SCALE * x[0], SCALE - (SCALE * x[1]))
                             for x in i.coordinates])
-            draw.polygon(polygon, outline=polygon.color)
+            draw.polygon(polygon, outline=i.color)
         image.save("image.png")
 
     def addColor(self, color):

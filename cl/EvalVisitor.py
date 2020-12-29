@@ -21,8 +21,20 @@ class EvalVisitor(PolygonsVisitor):
 
     # Visit a parse tree produced by PolygonsParser#root.
     def visitRoot(self, ctx: PolygonsParser.RootContext):
-        n = next(ctx.getChildren())
-        return self.visit(n)
+        list = [n for n in ctx.getChildren()]
+        for i in range(len(list)-1):
+            inf = self.visit(list[i])
+            if inf is not None:
+                res = self.visit(list[i])
+                if type(res) is tuple:
+                    print(' '.join([str(i) for i in res]))
+                elif type(res) is bool:
+                    if res:
+                        print("yes")
+                    else:
+                        print("no")
+                else:
+                    print(res)
 
     # Visit a parse tree produced by PolygonsParser#expr.
     def visitExpr(self, ctx: PolygonsParser.ExprContext):
@@ -33,7 +45,6 @@ class EvalVisitor(PolygonsVisitor):
     def visitVariable(self, ctx: PolygonsParser.VariableContext):
         list = [n for n in ctx.getChildren()]
         self.dict[list[0].getText()] = self.visit(list[2])
-        return self.dict[list[0].getText()]
 
     # Visit a parse tree produced by PolygonsParser#operation.
     def visitOperation(self, ctx: PolygonsParser.OperationContext):
@@ -41,7 +52,6 @@ class EvalVisitor(PolygonsVisitor):
         if ctx.getChildCount() == 1:
             n = next(ctx.getChildren())
             pol = self.visit(n)
-            print(n.getText(), pol)
             if pol is None:
                 if n.getText() not in self.dict:
                     raise Exception("No s'ha trobat cap identificador '%s'"
@@ -53,8 +63,8 @@ class EvalVisitor(PolygonsVisitor):
 
         elif ctx.getChildCount() == 2:
             pol = self.visit(ctx.operation(0))
-            pol.boundingBox()
-            return pol
+            box = pol.boundingBox()
+            return ConvexPolygon(box)
 
         else:
             list = [n for n in ctx.getChildren()]
@@ -118,7 +128,10 @@ class EvalVisitor(PolygonsVisitor):
 
     # Visit a parse tree produced by PolygonsParser#printPol.
     def visitPrintPol(self, ctx: PolygonsParser.PrintPolContext):
-        return self.visitChildren(ctx)
+        list = [n for n in ctx.getChildren()]
+        pol = self.visit(list[1])
+        coord = pol.coordinates
+        print(' '.join([str(i) for tup in coord for i in tup]))
 
     # Visit a parse tree produced by PolygonsParser#area.
     def visitArea(self, ctx: PolygonsParser.AreaContext):
@@ -138,7 +151,7 @@ class EvalVisitor(PolygonsVisitor):
     def visitVertices(self, ctx: PolygonsParser.VerticesContext):
         list = [n for n in ctx.getChildren()]
         pol = self.visit(list[1])
-        vertices = pol.self.getVerticesEdges()
+        vertices = pol.getVerticesEdges()
         return vertices
 
     # Visit a parse tree produced by PolygonsParser#centroid.
@@ -156,15 +169,15 @@ class EvalVisitor(PolygonsVisitor):
         id = self.dict.keys()[self.dict.values().index(pol)]
         pol.addColor(color)
         self.dict[id] = pol
-        # return self.visitChildren(ctx)
 
     # Visit a parse tree produced by PolygonsParser#inside.
     def visitInside(self, ctx: PolygonsParser.InsideContext):
         list = [n for n in ctx.getChildren()]
         pol1 = self.visit(list[1])
         pol2 = self.visit(list[3])
-        inside = pol1.containsPolygon(pol2)
-        return inside
+        inside1 = pol1.containsPolygon(pol2)
+        inside2 = pol2.containsPolygon(pol1)
+        return inside1 or inside2
 
     # Visit a parse tree produced by PolygonsParser#equal.
     def visitEqual(self, ctx: PolygonsParser.EqualContext):
@@ -179,8 +192,7 @@ class EvalVisitor(PolygonsVisitor):
         list = [n for n in ctx.getChildren()]
         polygons = []
         polygons = self.visit(list[3])
-        polygons.ConvexPolygon.draw(polygons)
-        # return self.visitChildren(ctx)
+        ConvexPolygon.draw(polygons)
 
 
 del PolygonsParser

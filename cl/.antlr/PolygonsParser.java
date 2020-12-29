@@ -103,10 +103,13 @@ public class PolygonsParser extends Parser {
 	}
 
 	public static class RootContext extends ParserRuleContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
 		public TerminalNode EOF() { return getToken(PolygonsParser.EOF, 0); }
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
 		public RootContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -116,12 +119,25 @@ public class PolygonsParser extends Parser {
 	public final RootContext root() throws RecognitionException {
 		RootContext _localctx = new RootContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_root);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(38);
-			expr();
-			setState(39);
+			setState(39); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(38);
+				expr();
+				}
+				}
+				setState(41); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << ID))) != 0) );
+			setState(43);
 			match(EOF);
 			}
 		}
@@ -153,13 +169,13 @@ public class PolygonsParser extends Parser {
 		ExprContext _localctx = new ExprContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_expr);
 		try {
-			setState(43);
+			setState(47);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(41);
+				setState(45);
 				variable();
 				}
 				break;
@@ -174,7 +190,7 @@ public class PolygonsParser extends Parser {
 			case T__18:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(42);
+				setState(46);
 				instruction();
 				}
 				break;
@@ -210,11 +226,11 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(45);
+			setState(49);
 			match(ID);
-			setState(46);
+			setState(50);
 			match(T__0);
-			setState(47);
+			setState(51);
 			operation(0);
 			}
 		}
@@ -264,36 +280,36 @@ public class PolygonsParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(58);
+			setState(62);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__1:
 				{
-				setState(50);
+				setState(54);
 				match(T__1);
-				setState(51);
+				setState(55);
 				operation(0);
-				setState(52);
+				setState(56);
 				match(T__2);
 				}
 				break;
 			case PAD:
 				{
-				setState(54);
+				setState(58);
 				match(PAD);
-				setState(55);
+				setState(59);
 				operation(5);
 				}
 				break;
 			case T__3:
 				{
-				setState(56);
+				setState(60);
 				coords();
 				}
 				break;
 			case ID:
 				{
-				setState(57);
+				setState(61);
 				match(ID);
 				}
 				break;
@@ -301,26 +317,26 @@ public class PolygonsParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(68);
+			setState(72);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(66);
+					setState(70);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 					case 1:
 						{
 						_localctx = new OperationContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_operation);
-						setState(60);
+						setState(64);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(61);
+						setState(65);
 						match(MUL);
-						setState(62);
+						setState(66);
 						operation(5);
 						}
 						break;
@@ -328,20 +344,20 @@ public class PolygonsParser extends Parser {
 						{
 						_localctx = new OperationContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_operation);
-						setState(63);
+						setState(67);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(64);
+						setState(68);
 						match(MES);
-						setState(65);
+						setState(69);
 						operation(4);
 						}
 						break;
 					}
 					} 
 				}
-				setState(70);
+				setState(74);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			}
 			}
 		}
@@ -394,69 +410,69 @@ public class PolygonsParser extends Parser {
 		InstructionContext _localctx = new InstructionContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_instruction);
 		try {
-			setState(80);
+			setState(84);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__10:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(71);
+				setState(75);
 				printPol();
 				}
 				break;
 			case T__11:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(72);
+				setState(76);
 				area();
 				}
 				break;
 			case T__12:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(73);
+				setState(77);
 				perimeter();
 				}
 				break;
 			case T__13:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(74);
+				setState(78);
 				vertices();
 				}
 				break;
 			case T__14:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(75);
+				setState(79);
 				centroid();
 				}
 				break;
 			case T__15:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(76);
+				setState(80);
 				color();
 				}
 				break;
 			case T__16:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(77);
+				setState(81);
 				inside();
 				}
 				break;
 			case T__17:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(78);
+				setState(82);
 				equal();
 				}
 				break;
 			case T__18:
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(79);
+				setState(83);
 				draw();
 				}
 				break;
@@ -497,15 +513,15 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(82);
+			setState(86);
 			match(T__3);
-			setState(87);
+			setState(91);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==NUM || _la==R) {
 				{
 				{
-				setState(83);
+				setState(87);
 				_la = _input.LA(1);
 				if ( !(_la==NUM || _la==R) ) {
 				_errHandler.recoverInline(this);
@@ -515,7 +531,7 @@ public class PolygonsParser extends Parser {
 					_errHandler.reportMatch(this);
 					consume();
 				}
-				setState(84);
+				setState(88);
 				_la = _input.LA(1);
 				if ( !(_la==NUM || _la==R) ) {
 				_errHandler.recoverInline(this);
@@ -527,11 +543,11 @@ public class PolygonsParser extends Parser {
 				}
 				}
 				}
-				setState(89);
+				setState(93);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(90);
+			setState(94);
 			match(T__4);
 			}
 		}
@@ -563,15 +579,15 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(92);
-			match(T__5);
-			setState(93);
-			match(NUM);
-			setState(94);
-			match(NUM);
-			setState(95);
-			match(NUM);
 			setState(96);
+			match(T__5);
+			setState(97);
+			match(NUM);
+			setState(98);
+			match(NUM);
+			setState(99);
+			match(NUM);
+			setState(100);
 			match(T__6);
 			}
 		}
@@ -599,7 +615,7 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(98);
+			setState(102);
 			match(T__7);
 			}
 		}
@@ -627,7 +643,7 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(100);
+			setState(104);
 			match(T__8);
 			}
 		}
@@ -663,22 +679,22 @@ public class PolygonsParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(102);
+			setState(106);
 			operation(0);
 			}
-			setState(107);
+			setState(111);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__9) {
 				{
 				{
-				setState(103);
+				setState(107);
 				match(T__9);
-				setState(104);
+				setState(108);
 				operation(0);
 				}
 				}
-				setState(109);
+				setState(113);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -714,9 +730,9 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(110);
+			setState(114);
 			match(T__10);
-			setState(113);
+			setState(117);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__1:
@@ -724,13 +740,13 @@ public class PolygonsParser extends Parser {
 			case ID:
 			case PAD:
 				{
-				setState(111);
+				setState(115);
 				operation(0);
 				}
 				break;
 			case T__8:
 				{
-				setState(112);
+				setState(116);
 				lines();
 				}
 				break;
@@ -766,9 +782,9 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(115);
+			setState(119);
 			match(T__11);
-			setState(116);
+			setState(120);
 			operation(0);
 			}
 		}
@@ -799,9 +815,9 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(118);
+			setState(122);
 			match(T__12);
-			setState(119);
+			setState(123);
 			operation(0);
 			}
 		}
@@ -832,9 +848,9 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(121);
+			setState(125);
 			match(T__13);
-			setState(122);
+			setState(126);
 			operation(0);
 			}
 		}
@@ -865,9 +881,9 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(124);
+			setState(128);
 			match(T__14);
-			setState(125);
+			setState(129);
 			operation(0);
 			}
 		}
@@ -901,13 +917,13 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(127);
+			setState(131);
 			match(T__15);
-			setState(128);
+			setState(132);
 			operation(0);
-			setState(129);
+			setState(133);
 			match(T__9);
-			setState(130);
+			setState(134);
 			colorRGB();
 			}
 		}
@@ -941,13 +957,13 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(132);
+			setState(136);
 			match(T__16);
-			setState(133);
+			setState(137);
 			operation(0);
-			setState(134);
+			setState(138);
 			match(T__9);
-			setState(135);
+			setState(139);
 			operation(0);
 			}
 		}
@@ -981,13 +997,13 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(137);
+			setState(141);
 			match(T__17);
-			setState(138);
+			setState(142);
 			operation(0);
-			setState(139);
+			setState(143);
 			match(T__9);
-			setState(140);
+			setState(144);
 			operation(0);
 			}
 		}
@@ -1021,13 +1037,13 @@ public class PolygonsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(142);
+			setState(146);
 			match(T__18);
-			setState(143);
+			setState(147);
 			img();
-			setState(144);
+			setState(148);
 			match(T__9);
-			setState(145);
+			setState(149);
 			polygons();
 			}
 		}
@@ -1060,44 +1076,45 @@ public class PolygonsParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\36\u0096\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\36\u009a\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\3\2\3\2\3\2\3\3\3\3\5\3.\n\3\3\4\3\4\3\4\3\4\3\5"+
-		"\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5=\n\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5"+
-		"E\n\5\f\5\16\5H\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6S\n\6\3\7"+
-		"\3\7\3\7\7\7X\n\7\f\7\16\7[\13\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3"+
-		"\t\3\n\3\n\3\13\3\13\3\13\7\13l\n\13\f\13\16\13o\13\13\3\f\3\f\3\f\5\f"+
-		"t\n\f\3\r\3\r\3\r\3\16\3\16\3\16\3\17\3\17\3\17\3\20\3\20\3\20\3\21\3"+
-		"\21\3\21\3\21\3\21\3\22\3\22\3\22\3\22\3\22\3\23\3\23\3\23\3\23\3\23\3"+
-		"\24\3\24\3\24\3\24\3\24\3\24\2\3\b\25\2\4\6\b\n\f\16\20\22\24\26\30\32"+
-		"\34\36 \"$&\2\3\4\2\26\26\30\30\2\u0093\2(\3\2\2\2\4-\3\2\2\2\6/\3\2\2"+
-		"\2\b<\3\2\2\2\nR\3\2\2\2\fT\3\2\2\2\16^\3\2\2\2\20d\3\2\2\2\22f\3\2\2"+
-		"\2\24h\3\2\2\2\26p\3\2\2\2\30u\3\2\2\2\32x\3\2\2\2\34{\3\2\2\2\36~\3\2"+
-		"\2\2 \u0081\3\2\2\2\"\u0086\3\2\2\2$\u008b\3\2\2\2&\u0090\3\2\2\2()\5"+
-		"\4\3\2)*\7\2\2\3*\3\3\2\2\2+.\5\6\4\2,.\5\n\6\2-+\3\2\2\2-,\3\2\2\2.\5"+
-		"\3\2\2\2/\60\7\27\2\2\60\61\7\3\2\2\61\62\5\b\5\2\62\7\3\2\2\2\63\64\b"+
-		"\5\1\2\64\65\7\4\2\2\65\66\5\b\5\2\66\67\7\5\2\2\67=\3\2\2\289\7\33\2"+
-		"\29=\5\b\5\7:=\5\f\7\2;=\7\27\2\2<\63\3\2\2\2<8\3\2\2\2<:\3\2\2\2<;\3"+
-		"\2\2\2=F\3\2\2\2>?\f\6\2\2?@\7\31\2\2@E\5\b\5\7AB\f\5\2\2BC\7\32\2\2C"+
-		"E\5\b\5\6D>\3\2\2\2DA\3\2\2\2EH\3\2\2\2FD\3\2\2\2FG\3\2\2\2G\t\3\2\2\2"+
-		"HF\3\2\2\2IS\5\26\f\2JS\5\30\r\2KS\5\32\16\2LS\5\34\17\2MS\5\36\20\2N"+
-		"S\5 \21\2OS\5\"\22\2PS\5$\23\2QS\5&\24\2RI\3\2\2\2RJ\3\2\2\2RK\3\2\2\2"+
-		"RL\3\2\2\2RM\3\2\2\2RN\3\2\2\2RO\3\2\2\2RP\3\2\2\2RQ\3\2\2\2S\13\3\2\2"+
-		"\2TY\7\6\2\2UV\t\2\2\2VX\t\2\2\2WU\3\2\2\2X[\3\2\2\2YW\3\2\2\2YZ\3\2\2"+
-		"\2Z\\\3\2\2\2[Y\3\2\2\2\\]\7\7\2\2]\r\3\2\2\2^_\7\b\2\2_`\7\26\2\2`a\7"+
-		"\26\2\2ab\7\26\2\2bc\7\t\2\2c\17\3\2\2\2de\7\n\2\2e\21\3\2\2\2fg\7\13"+
-		"\2\2g\23\3\2\2\2hm\5\b\5\2ij\7\f\2\2jl\5\b\5\2ki\3\2\2\2lo\3\2\2\2mk\3"+
-		"\2\2\2mn\3\2\2\2n\25\3\2\2\2om\3\2\2\2ps\7\r\2\2qt\5\b\5\2rt\5\22\n\2"+
-		"sq\3\2\2\2sr\3\2\2\2t\27\3\2\2\2uv\7\16\2\2vw\5\b\5\2w\31\3\2\2\2xy\7"+
-		"\17\2\2yz\5\b\5\2z\33\3\2\2\2{|\7\20\2\2|}\5\b\5\2}\35\3\2\2\2~\177\7"+
-		"\21\2\2\177\u0080\5\b\5\2\u0080\37\3\2\2\2\u0081\u0082\7\22\2\2\u0082"+
-		"\u0083\5\b\5\2\u0083\u0084\7\f\2\2\u0084\u0085\5\16\b\2\u0085!\3\2\2\2"+
-		"\u0086\u0087\7\23\2\2\u0087\u0088\5\b\5\2\u0088\u0089\7\f\2\2\u0089\u008a"+
-		"\5\b\5\2\u008a#\3\2\2\2\u008b\u008c\7\24\2\2\u008c\u008d\5\b\5\2\u008d"+
-		"\u008e\7\f\2\2\u008e\u008f\5\b\5\2\u008f%\3\2\2\2\u0090\u0091\7\25\2\2"+
-		"\u0091\u0092\5\20\t\2\u0092\u0093\7\f\2\2\u0093\u0094\5\24\13\2\u0094"+
-		"\'\3\2\2\2\n-<DFRYms";
+		"\4\23\t\23\4\24\t\24\3\2\6\2*\n\2\r\2\16\2+\3\2\3\2\3\3\3\3\5\3\62\n\3"+
+		"\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5A\n\5\3\5\3\5"+
+		"\3\5\3\5\3\5\3\5\7\5I\n\5\f\5\16\5L\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3"+
+		"\6\3\6\5\6W\n\6\3\7\3\7\3\7\7\7\\\n\7\f\7\16\7_\13\7\3\7\3\7\3\b\3\b\3"+
+		"\b\3\b\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\3\13\7\13p\n\13\f\13\16\13s\13"+
+		"\13\3\f\3\f\3\f\5\fx\n\f\3\r\3\r\3\r\3\16\3\16\3\16\3\17\3\17\3\17\3\20"+
+		"\3\20\3\20\3\21\3\21\3\21\3\21\3\21\3\22\3\22\3\22\3\22\3\22\3\23\3\23"+
+		"\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\2\3\b\25\2\4\6\b\n\f\16"+
+		"\20\22\24\26\30\32\34\36 \"$&\2\3\4\2\26\26\30\30\2\u0098\2)\3\2\2\2\4"+
+		"\61\3\2\2\2\6\63\3\2\2\2\b@\3\2\2\2\nV\3\2\2\2\fX\3\2\2\2\16b\3\2\2\2"+
+		"\20h\3\2\2\2\22j\3\2\2\2\24l\3\2\2\2\26t\3\2\2\2\30y\3\2\2\2\32|\3\2\2"+
+		"\2\34\177\3\2\2\2\36\u0082\3\2\2\2 \u0085\3\2\2\2\"\u008a\3\2\2\2$\u008f"+
+		"\3\2\2\2&\u0094\3\2\2\2(*\5\4\3\2)(\3\2\2\2*+\3\2\2\2+)\3\2\2\2+,\3\2"+
+		"\2\2,-\3\2\2\2-.\7\2\2\3.\3\3\2\2\2/\62\5\6\4\2\60\62\5\n\6\2\61/\3\2"+
+		"\2\2\61\60\3\2\2\2\62\5\3\2\2\2\63\64\7\27\2\2\64\65\7\3\2\2\65\66\5\b"+
+		"\5\2\66\7\3\2\2\2\678\b\5\1\289\7\4\2\29:\5\b\5\2:;\7\5\2\2;A\3\2\2\2"+
+		"<=\7\33\2\2=A\5\b\5\7>A\5\f\7\2?A\7\27\2\2@\67\3\2\2\2@<\3\2\2\2@>\3\2"+
+		"\2\2@?\3\2\2\2AJ\3\2\2\2BC\f\6\2\2CD\7\31\2\2DI\5\b\5\7EF\f\5\2\2FG\7"+
+		"\32\2\2GI\5\b\5\6HB\3\2\2\2HE\3\2\2\2IL\3\2\2\2JH\3\2\2\2JK\3\2\2\2K\t"+
+		"\3\2\2\2LJ\3\2\2\2MW\5\26\f\2NW\5\30\r\2OW\5\32\16\2PW\5\34\17\2QW\5\36"+
+		"\20\2RW\5 \21\2SW\5\"\22\2TW\5$\23\2UW\5&\24\2VM\3\2\2\2VN\3\2\2\2VO\3"+
+		"\2\2\2VP\3\2\2\2VQ\3\2\2\2VR\3\2\2\2VS\3\2\2\2VT\3\2\2\2VU\3\2\2\2W\13"+
+		"\3\2\2\2X]\7\6\2\2YZ\t\2\2\2Z\\\t\2\2\2[Y\3\2\2\2\\_\3\2\2\2][\3\2\2\2"+
+		"]^\3\2\2\2^`\3\2\2\2_]\3\2\2\2`a\7\7\2\2a\r\3\2\2\2bc\7\b\2\2cd\7\26\2"+
+		"\2de\7\26\2\2ef\7\26\2\2fg\7\t\2\2g\17\3\2\2\2hi\7\n\2\2i\21\3\2\2\2j"+
+		"k\7\13\2\2k\23\3\2\2\2lq\5\b\5\2mn\7\f\2\2np\5\b\5\2om\3\2\2\2ps\3\2\2"+
+		"\2qo\3\2\2\2qr\3\2\2\2r\25\3\2\2\2sq\3\2\2\2tw\7\r\2\2ux\5\b\5\2vx\5\22"+
+		"\n\2wu\3\2\2\2wv\3\2\2\2x\27\3\2\2\2yz\7\16\2\2z{\5\b\5\2{\31\3\2\2\2"+
+		"|}\7\17\2\2}~\5\b\5\2~\33\3\2\2\2\177\u0080\7\20\2\2\u0080\u0081\5\b\5"+
+		"\2\u0081\35\3\2\2\2\u0082\u0083\7\21\2\2\u0083\u0084\5\b\5\2\u0084\37"+
+		"\3\2\2\2\u0085\u0086\7\22\2\2\u0086\u0087\5\b\5\2\u0087\u0088\7\f\2\2"+
+		"\u0088\u0089\5\16\b\2\u0089!\3\2\2\2\u008a\u008b\7\23\2\2\u008b\u008c"+
+		"\5\b\5\2\u008c\u008d\7\f\2\2\u008d\u008e\5\b\5\2\u008e#\3\2\2\2\u008f"+
+		"\u0090\7\24\2\2\u0090\u0091\5\b\5\2\u0091\u0092\7\f\2\2\u0092\u0093\5"+
+		"\b\5\2\u0093%\3\2\2\2\u0094\u0095\7\25\2\2\u0095\u0096\5\20\t\2\u0096"+
+		"\u0097\7\f\2\2\u0097\u0098\5\24\13\2\u0098\'\3\2\2\2\13+\61@HJV]qw";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

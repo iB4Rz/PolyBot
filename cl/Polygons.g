@@ -1,6 +1,6 @@
 grammar Polygons;
 
-root: expr EOF;
+root: expr+ EOF;
 
 expr: variable | instruction;
 

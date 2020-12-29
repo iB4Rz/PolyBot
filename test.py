@@ -20,7 +20,7 @@ def main():
     print("Area: " + str(p1.getArea()))
     print("Centroid: " + str(p1.getCoordCentroid()))
     print("Regular: " + str(p1.isRegular()))
-    print("Bounding Box: " + str(p1.boudingBox()))
+    print("Bounding Box: " + str(p1.boundingBox()))
     print("Convex union: " + str(p1.union(p2)))
     print("Intersection: " + str(p1.intersection(p2)))
 
@@ -28,7 +28,7 @@ def main():
     polygones.append(p1)
     polygones.append(p2)
     colors = [(1, 0, 0), (0, 1, 0)]
-    polygons.ConvexPolygon.draw(colors, polygones)
+    polygons.ConvexPolygon.draw(polygones)
 
 if __name__ == "__main__":
     main()
