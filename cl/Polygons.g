@@ -15,8 +15,8 @@ operation: '(' operation ')'
         | operation MES operation
         | coords
         | ID
-        | R
-        | NUM
+        //| R
+        //| NUM
         ;
 
 instruction:  printPol
@@ -35,7 +35,7 @@ coords: '[' ( (NUM | R) (NUM | R) )* ']';
 colorRGB: '{' NUM NUM NUM '}';
 img: '"image.png"';
 lines: '"---"';
-polygons: ( ID ) (',' ID)*;
+polygons: ( operation ) (',' operation)*;
 
 printPol: 'print' (operation | lines);
 area: 'area' operation;
@@ -44,7 +44,7 @@ vertices: 'vertices' operation;
 centroid: 'centroid' operation;
 color: 'color' operation ',' colorRGB;
 inside: 'inside' operation ',' operation;
-equal: 'equal' operation ',' ID;
+equal: 'equal' operation ',' operation;
 draw: 'draw' img ',' polygons;
 
 // printPol: 'print' (ID | operation | lines);

@@ -182,19 +182,26 @@ class ConvexPolygon:
         y_max = max(y)
         return [(x_min, y_min), (x_min, y_max), (x_max, y_max), (x_max, y_min)]
 
-    def draw(colors, polygons):
+    def isEqual(self, polygon):
+        '''Check if two convex polygons are equals'''
+
+        return self.coordinates == polygon.coordinates
+
+    def draw(polygons):
         '''Draw convex polygons (with colors)
         in a PNG image'''
 
         image = Image.new('RGB', (RAW, RAW), color=(255, 255, 255))
         draw = ImageDraw.Draw(image)
-        for c, p in zip(colors, polygons):
-            color = tuple([RGB * x for x in c])
+        for i in polygons:
             polygon = tuple([(SCALE * x[0], SCALE - (SCALE * x[1]))
-                            for x in p.coordinates])
-            draw.polygon(polygon, outline=color)
-        # image.show()
+                            for x in i.coordinates])
+            draw.polygon(polygon, outline=polygon.color)
         image.save("image.png")
+
+    def addColor(self, color):
+        colorRGB = tuple([RGB * x for x in color])
+        self.color = colorRGB
 
     def printTest(self):
         for i in self.coordinates:

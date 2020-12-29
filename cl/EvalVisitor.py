@@ -16,7 +16,7 @@ else:
 
 class EvalVisitor(PolygonsVisitor):
 
-    ''' Deberia ser un diccionario de polygonos '''
+    # Diccionario de polygonos
     dict = {}
 
     # Visit a parse tree produced by PolygonsParser#root.
@@ -41,6 +41,7 @@ class EvalVisitor(PolygonsVisitor):
         if ctx.getChildCount() == 1:
             n = next(ctx.getChildren())
             pol = self.visit(n)
+            print(n.getText(), pol)
             if pol is None:
                 if n.getText() not in self.dict:
                     raise Exception("No s'ha trobat cap identificador '%s'"
@@ -108,7 +109,12 @@ class EvalVisitor(PolygonsVisitor):
 
     # Visit a parse tree produced by PolygonsParser#polygons.
     def visitPolygons(self, ctx: PolygonsParser.PolygonsContext):
-        return self.visitChildren(ctx)
+        list = [n for n in ctx.getChildren()]
+        polygons = []
+        for i in range(len(list)):
+            if i % 2 == 0:
+                polygons.append(self.visit(list[i]))
+        return polygons
 
     # Visit a parse tree produced by PolygonsParser#printPol.
     def visitPrintPol(self, ctx: PolygonsParser.PrintPolContext):
@@ -116,37 +122,65 @@ class EvalVisitor(PolygonsVisitor):
 
     # Visit a parse tree produced by PolygonsParser#area.
     def visitArea(self, ctx: PolygonsParser.AreaContext):
-        return self.visitChildren(ctx)
+        list = [n for n in ctx.getChildren()]
+        pol = self.visit(list[1])
+        area = pol.getArea()
+        return area
 
     # Visit a parse tree produced by PolygonsParser#perimeter.
     def visitPerimeter(self, ctx: PolygonsParser.PerimeterContext):
-        return self.visitChildren(ctx)
+        list = [n for n in ctx.getChildren()]
+        pol = self.visit(list[1])
+        perimeter = pol.getPerimeter()
+        return perimeter
 
     # Visit a parse tree produced by PolygonsParser#vertices.
     def visitVertices(self, ctx: PolygonsParser.VerticesContext):
-        return self.visitChildren(ctx)
+        list = [n for n in ctx.getChildren()]
+        pol = self.visit(list[1])
+        vertices = pol.self.getVerticesEdges()
+        return vertices
 
     # Visit a parse tree produced by PolygonsParser#centroid.
     def visitCentroid(self, ctx: PolygonsParser.CentroidContext):
-        return self.visitChildren(ctx)
+        list = [n for n in ctx.getChildren()]
+        pol = self.visit(list[1])
+        centroid = pol.getCoordCentroid()
+        return centroid
 
     # Visit a parse tree produced by PolygonsParser#color.
     def visitColor(self, ctx: PolygonsParser.ColorContext):
-        # list  = [n for n in ctx.getChildren()]
-        # self.dict[list[1].getText()] = self.visit(list[3])
-        return self.visitChildren(ctx)
+        list = [n for n in ctx.getChildren()]
+        color = self.visit(list[3])
+        pol = self.visit(list[1])
+        id = self.dict.keys()[self.dict.values().index(pol)]
+        pol.addColor(color)
+        self.dict[id] = pol
+        # return self.visitChildren(ctx)
 
     # Visit a parse tree produced by PolygonsParser#inside.
     def visitInside(self, ctx: PolygonsParser.InsideContext):
-        return self.visitChildren(ctx)
+        list = [n for n in ctx.getChildren()]
+        pol1 = self.visit(list[1])
+        pol2 = self.visit(list[3])
+        inside = pol1.containsPolygon(pol2)
+        return inside
 
     # Visit a parse tree produced by PolygonsParser#equal.
     def visitEqual(self, ctx: PolygonsParser.EqualContext):
-        return self.visitChildren(ctx)
+        list = [n for n in ctx.getChildren()]
+        pol1 = self.visit(list[1])
+        pol2 = self.visit(list[3])
+        equal = pol1.isEqual(pol2)
+        return equal
 
     # Visit a parse tree produced by PolygonsParser#draw.
     def visitDraw(self, ctx: PolygonsParser.DrawContext):
-        return self.visitChildren(ctx)
+        list = [n for n in ctx.getChildren()]
+        polygons = []
+        polygons = self.visit(list[3])
+        polygons.ConvexPolygon.draw(polygons)
+        # return self.visitChildren(ctx)
 
 
 del PolygonsParser
