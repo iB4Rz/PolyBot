@@ -1,5 +1,5 @@
 // sample script
-p1 := [12 16  20 24  28 20  24 6  8 6]
+p1 := [0 0  0 1  1 1  0.2 0.8]
 color p1, {1 0 0}
 print p1
 area p1
@@ -9,12 +9,12 @@ centroid p1
 
 print "---"
 
-p2 := [12 22  6 12  28 10]
-color p2, {1 0.64 0}
+p2 := [0 0  1 0  1 1]
+color p2, {0 1 0}
 print p2
 equal p1, p2
 inside p1, p2
-inside [15 15], p2
+inside [0.8 0.2], p2
 
 draw "image.png", p1, p2
 

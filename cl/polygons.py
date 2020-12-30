@@ -175,7 +175,8 @@ class ConvexPolygon:
     def isEqual(self, polygon):
         '''Check if two convex polygons are equals'''
 
-        return self.coordinates == polygon.coordinates
+        return (self.coordinates == polygon.coordinates and
+                self.color == polygon.color)
 
     def draw(polygons, nameImg):
         '''Draw convex polygons (with colors)
@@ -183,8 +184,11 @@ class ConvexPolygon:
 
         image = Image.new('RGB', (RAW, RAW), color=(255, 255, 255))
         draw = ImageDraw.Draw(image)
+
+        center = ConvexPolygon.calculate(polygons)
         for i in polygons:
-            polygon = tuple([(SCALE * x[0], SCALE - (SCALE * x[1]))
+            polygon = tuple([(SCALE * ((x[0] * 0.5)/float(center[0])),
+                            SCALE - (SCALE * ((x[1] * 0.5)/float(center[1]))))
                             for x in i.coordinates])
             draw.polygon(polygon, outline=i.color)
         image.save(nameImg)
@@ -192,7 +196,7 @@ class ConvexPolygon:
     def addColor(self, color):
         ''' Add color to a convex polygon'''
 
-        colorRGB = tuple([RGB * x for x in color])
+        colorRGB = tuple([int(RGB * x) for x in color])
         self.color = colorRGB
 
     @staticmethod
@@ -247,3 +251,18 @@ class ConvexPolygon:
         xd = c1[0] - c2[0]
         yd = c1[1] - c2[1]
         return (xd ** 2 + yd ** 2) ** 0.5
+
+    @staticmethod
+    def calculate(polygons):
+        vectors = []
+        for i in polygons:
+            vectors += i.coordinates
+        pol1 = ConvexPolygon(vectors)
+        boundingBx = pol1.boundingBox()
+        pol2 = ConvexPolygon(boundingBx)
+        center = pol2.getCoordCentroid()
+        return center
+
+
+
+

@@ -32,7 +32,7 @@ instruction:  printPol
 
 // coords: '[' ( (NUM | R) (NUM | R) )* ']';
 coords: '[' ( (NUM | R) (NUM | R) )* ']';
-colorRGB: '{' NUM NUM NUM '}';
+colorRGB: '{' (NUM  |R) (NUM | R) (NUM | R) '}';
 img: '"'ID'.png"';
 text: '"'(ID | G)+'"';
 polygons: ( operation ) (',' operation)*;

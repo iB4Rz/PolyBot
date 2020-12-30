@@ -43,14 +43,14 @@ def serializedATN():
         buf.write("\2VR\3\2\2\2VS\3\2\2\2VT\3\2\2\2VU\3\2\2\2W\13\3\2\2\2")
         buf.write("X]\7\6\2\2YZ\t\2\2\2Z\\\t\2\2\2[Y\3\2\2\2\\_\3\2\2\2]")
         buf.write("[\3\2\2\2]^\3\2\2\2^`\3\2\2\2_]\3\2\2\2`a\7\7\2\2a\r\3")
-        buf.write("\2\2\2bc\7\b\2\2cd\7\26\2\2de\7\26\2\2ef\7\26\2\2fg\7")
-        buf.write("\t\2\2g\17\3\2\2\2hi\7\n\2\2ij\7\27\2\2jk\7\13\2\2k\21")
-        buf.write("\3\2\2\2ln\7\n\2\2mo\t\3\2\2nm\3\2\2\2op\3\2\2\2pn\3\2")
-        buf.write("\2\2pq\3\2\2\2qr\3\2\2\2rs\7\n\2\2s\23\3\2\2\2ty\5\b\5")
-        buf.write("\2uv\7\f\2\2vx\5\b\5\2wu\3\2\2\2x{\3\2\2\2yw\3\2\2\2y")
-        buf.write("z\3\2\2\2z\25\3\2\2\2{y\3\2\2\2|\177\7\r\2\2}\u0080\5")
-        buf.write("\b\5\2~\u0080\5\22\n\2\177}\3\2\2\2\177~\3\2\2\2\u0080")
-        buf.write("\27\3\2\2\2\u0081\u0082\7\16\2\2\u0082\u0083\5\b\5\2\u0083")
+        buf.write("\2\2\2bc\7\b\2\2cd\t\2\2\2de\t\2\2\2ef\t\2\2\2fg\7\t\2")
+        buf.write("\2g\17\3\2\2\2hi\7\n\2\2ij\7\27\2\2jk\7\13\2\2k\21\3\2")
+        buf.write("\2\2ln\7\n\2\2mo\t\3\2\2nm\3\2\2\2op\3\2\2\2pn\3\2\2\2")
+        buf.write("pq\3\2\2\2qr\3\2\2\2rs\7\n\2\2s\23\3\2\2\2ty\5\b\5\2u")
+        buf.write("v\7\f\2\2vx\5\b\5\2wu\3\2\2\2x{\3\2\2\2yw\3\2\2\2yz\3")
+        buf.write("\2\2\2z\25\3\2\2\2{y\3\2\2\2|\177\7\r\2\2}\u0080\5\b\5")
+        buf.write("\2~\u0080\5\22\n\2\177}\3\2\2\2\177~\3\2\2\2\u0080\27")
+        buf.write("\3\2\2\2\u0081\u0082\7\16\2\2\u0082\u0083\5\b\5\2\u0083")
         buf.write("\31\3\2\2\2\u0084\u0085\7\17\2\2\u0085\u0086\5\b\5\2\u0086")
         buf.write("\33\3\2\2\2\u0087\u0088\7\20\2\2\u0088\u0089\5\b\5\2\u0089")
         buf.write("\35\3\2\2\2\u008a\u008b\7\21\2\2\u008b\u008c\5\b\5\2\u008c")
@@ -639,6 +639,12 @@ class PolygonsParser ( Parser ):
             else:
                 return self.getToken(PolygonsParser.NUM, i)
 
+        def R(self, i:int=None):
+            if i is None:
+                return self.getTokens(PolygonsParser.R)
+            else:
+                return self.getToken(PolygonsParser.R, i)
+
         def getRuleIndex(self):
             return PolygonsParser.RULE_colorRGB
 
@@ -655,16 +661,32 @@ class PolygonsParser ( Parser ):
 
         localctx = PolygonsParser.ColorRGBContext(self, self._ctx, self.state)
         self.enterRule(localctx, 12, self.RULE_colorRGB)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 96
             self.match(PolygonsParser.T__5)
             self.state = 97
-            self.match(PolygonsParser.NUM)
+            _la = self._input.LA(1)
+            if not(_la==PolygonsParser.NUM or _la==PolygonsParser.R):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
             self.state = 98
-            self.match(PolygonsParser.NUM)
+            _la = self._input.LA(1)
+            if not(_la==PolygonsParser.NUM or _la==PolygonsParser.R):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
             self.state = 99
-            self.match(PolygonsParser.NUM)
+            _la = self._input.LA(1)
+            if not(_la==PolygonsParser.NUM or _la==PolygonsParser.R):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
             self.state = 100
             self.match(PolygonsParser.T__6)
         except RecognitionException as re:

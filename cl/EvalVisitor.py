@@ -171,9 +171,13 @@ class EvalVisitor(PolygonsVisitor):
         list = [n for n in ctx.getChildren()]
         color = self.visit(list[3])
         pol = self.visit(list[1])
-        id = self.dict.keys()[self.dict.values().index(pol)]
-        pol.addColor(color)
-        self.dict[id] = pol
+        for key, value in self.dict.items():
+            if value.isEqual(pol):
+                pol.addColor(color)
+                self.dict[key] = pol
+        # id = self.dict.keys()[self.dict.values().index(pol)]
+        # pol.addColor(color)
+        # self.dict[id] = pol
 
     # Visit a parse tree produced by PolygonsParser#inside.
     def visitInside(self, ctx: PolygonsParser.InsideContext):

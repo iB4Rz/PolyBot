@@ -567,6 +567,10 @@ public class PolygonsParser extends Parser {
 		public TerminalNode NUM(int i) {
 			return getToken(PolygonsParser.NUM, i);
 		}
+		public List<TerminalNode> R() { return getTokens(PolygonsParser.R); }
+		public TerminalNode R(int i) {
+			return getToken(PolygonsParser.R, i);
+		}
 		public ColorRGBContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -576,17 +580,42 @@ public class PolygonsParser extends Parser {
 	public final ColorRGBContext colorRGB() throws RecognitionException {
 		ColorRGBContext _localctx = new ColorRGBContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_colorRGB);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(96);
 			match(T__5);
 			setState(97);
-			match(NUM);
+			_la = _input.LA(1);
+			if ( !(_la==NUM || _la==R) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			setState(98);
-			match(NUM);
+			_la = _input.LA(1);
+			if ( !(_la==NUM || _la==R) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			setState(99);
-			match(NUM);
+			_la = _input.LA(1);
+			if ( !(_la==NUM || _la==R) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			setState(100);
 			match(T__6);
 			}
@@ -1141,11 +1170,11 @@ public class PolygonsParser extends Parser {
 		"\20\2RW\5 \21\2SW\5\"\22\2TW\5$\23\2UW\5&\24\2VM\3\2\2\2VN\3\2\2\2VO\3"+
 		"\2\2\2VP\3\2\2\2VQ\3\2\2\2VR\3\2\2\2VS\3\2\2\2VT\3\2\2\2VU\3\2\2\2W\13"+
 		"\3\2\2\2X]\7\6\2\2YZ\t\2\2\2Z\\\t\2\2\2[Y\3\2\2\2\\_\3\2\2\2][\3\2\2\2"+
-		"]^\3\2\2\2^`\3\2\2\2_]\3\2\2\2`a\7\7\2\2a\r\3\2\2\2bc\7\b\2\2cd\7\26\2"+
-		"\2de\7\26\2\2ef\7\26\2\2fg\7\t\2\2g\17\3\2\2\2hi\7\n\2\2ij\7\27\2\2jk"+
-		"\7\13\2\2k\21\3\2\2\2ln\7\n\2\2mo\t\3\2\2nm\3\2\2\2op\3\2\2\2pn\3\2\2"+
-		"\2pq\3\2\2\2qr\3\2\2\2rs\7\n\2\2s\23\3\2\2\2ty\5\b\5\2uv\7\f\2\2vx\5\b"+
-		"\5\2wu\3\2\2\2x{\3\2\2\2yw\3\2\2\2yz\3\2\2\2z\25\3\2\2\2{y\3\2\2\2|\177"+
+		"]^\3\2\2\2^`\3\2\2\2_]\3\2\2\2`a\7\7\2\2a\r\3\2\2\2bc\7\b\2\2cd\t\2\2"+
+		"\2de\t\2\2\2ef\t\2\2\2fg\7\t\2\2g\17\3\2\2\2hi\7\n\2\2ij\7\27\2\2jk\7"+
+		"\13\2\2k\21\3\2\2\2ln\7\n\2\2mo\t\3\2\2nm\3\2\2\2op\3\2\2\2pn\3\2\2\2"+
+		"pq\3\2\2\2qr\3\2\2\2rs\7\n\2\2s\23\3\2\2\2ty\5\b\5\2uv\7\f\2\2vx\5\b\5"+
+		"\2wu\3\2\2\2x{\3\2\2\2yw\3\2\2\2yz\3\2\2\2z\25\3\2\2\2{y\3\2\2\2|\177"+
 		"\7\r\2\2}\u0080\5\b\5\2~\u0080\5\22\n\2\177}\3\2\2\2\177~\3\2\2\2\u0080"+
 		"\27\3\2\2\2\u0081\u0082\7\16\2\2\u0082\u0083\5\b\5\2\u0083\31\3\2\2\2"+
 		"\u0084\u0085\7\17\2\2\u0085\u0086\5\b\5\2\u0086\33\3\2\2\2\u0087\u0088"+
