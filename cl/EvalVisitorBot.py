@@ -15,7 +15,7 @@ else:
 # for a parse tree produced by PolygonsParser.
 
 
-class EvalVisitor(PolygonsVisitor):
+class EvalVisitorBot(PolygonsVisitor):
 
     # Diccionario de polygonos
     dict = {}
@@ -28,14 +28,14 @@ class EvalVisitor(PolygonsVisitor):
             if inf is not None:
                 res = self.visit(list[i])
                 if type(res) is tuple:
-                    print(' '.join([str("%0.3f" % i) for i in res]))
+                    return str(' '.join([str("%0.3f" % i) for i in res]))
                 elif type(res) is bool:
                     if res:
-                        print("yes")
+                        return "yes"
                     else:
-                        print("no")
+                        return "no"
                 else:
-                    print("%0.3f" % res)
+                    return res
 
     # Visit a parse tree produced by PolygonsParser#expr.
     def visitExpr(self, ctx: PolygonsParser.ExprContext):
@@ -134,10 +134,10 @@ class EvalVisitor(PolygonsVisitor):
         list = [n for n in ctx.getChildren()]
         pol = self.visit(list[1])
         if type(pol) is str:
-            print(pol)
+            return pol
         else:
             coord = pol.coordinates
-            print(' '.join([str("%0.3f" % i) for tup in coord for i in tup]))
+            return (' '.join([str("%0.3f" % i) for tup in coord for i in tup]))
 
     # Visit a parse tree produced by PolygonsParser#area.
     def visitArea(self, ctx: PolygonsParser.AreaContext):

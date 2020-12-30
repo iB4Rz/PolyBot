@@ -16,9 +16,9 @@ def main():
     print("Contains Point: " + str(p2.containsPoint(point)))
     print("Contains Poligon: " + str(p1.containsPolygon(p2)))
     print("(NumV, NumE): " + str(p1.getVerticesEdges()))
-    print("Perimeter: " + str(p1.getPerimeter()))
-    print("Area: " + str(p1.getArea()))
-    print("Centroid: " + str(p1.getCoordCentroid()))
+    print("Perimeter: " + str(polygon1.getPerimeter()))
+    print("Area: " + str(polygon1.getArea()))
+    print("Centroid: " + str(polygon1.getCoordCentroid()))
     print("Regular: " + str(p1.isRegular()))
     print("Bounding Box: " + str(p1.boundingBox()))
     print("Convex union: " + str(p1.union(p2)))
@@ -28,7 +28,7 @@ def main():
     polygones.append(p1)
     polygones.append(p2)
     colors = [(1, 0, 0), (0, 1, 0)]
-    polygons.ConvexPolygon.draw(polygones)
+    polygons.ConvexPolygon.draw(polygones, "img.png")
 
 if __name__ == "__main__":
     main()
