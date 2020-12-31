@@ -1,15 +1,17 @@
 # Generated from Polygons.g by ANTLR 4.7.2
 import sys
+from antlr4 import *
+import copy
+import random
 sys.path.append("..")
-from antlr4 import *                # noqa: E402
-from polygons import ConvexPolygon  # noqa: E402
-import copy                         # noqa: E402
 if __name__ is not None and "." in __name__:
     from .PolygonsParser import PolygonsParser
     from .PolygonsVisitor import PolygonsVisitor
+    from polygons import ConvexPolygon
 else:
     from PolygonsParser import PolygonsParser
     from PolygonsVisitor import PolygonsVisitor
+    from polygons import ConvexPolygon
 
 # This class defines a complete generic visitor
 # for a parse tree produced by PolygonsParser.
@@ -63,9 +65,18 @@ class EvalVisitorBot(PolygonsVisitor):
                 return pol
 
         elif ctx.getChildCount() == 2:
-            pol = self.visit(ctx.operation(0))
-            box = pol.boundingBox()
-            return ConvexPolygon(box)
+            list = [n for n in ctx.getChildren()]
+            if list[0].getText() == '!':
+                polCoord = []
+                for i in range(int(list[1].getText())):
+                    c = (random.uniform(0.0, 1.0), random.uniform(0.0, 1.0))
+                    polCoord.append(c)
+                return ConvexPolygon(polCoord)
+
+            else:
+                pol = self.visit(ctx.operation(0))
+                box = pol.boundingBox()
+                return ConvexPolygon(box)
 
         else:
             list = [n for n in ctx.getChildren()]

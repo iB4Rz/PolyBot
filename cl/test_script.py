@@ -1,5 +1,4 @@
 import sys
-import fileinput
 from antlr4 import *
 
 if __name__ is not None and "." in __name__:
@@ -46,7 +45,7 @@ if __name__ == "__main__":
     visitor.visit(tree)
 
 
-# Descomentar per fer de linia en lina en input
+# Descomentar per fer de linia en lina en el terminal
 '''
 if __name__ == "__main__":
     

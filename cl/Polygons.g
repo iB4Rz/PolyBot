@@ -9,7 +9,7 @@ variable: ID ':=' operation
         ;
 
 operation: '(' operation ')'
-        // | EXC NUM
+        | EXC NUM
         | PAD operation
         | operation MUL operation
         | operation MES operation
