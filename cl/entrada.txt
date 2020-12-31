@@ -16,6 +16,7 @@ equal p1, p2
 inside p1, p2
 inside [15 15], p2
 
+paint p2
 draw "image.png", p1, p2
 
 print "---"
