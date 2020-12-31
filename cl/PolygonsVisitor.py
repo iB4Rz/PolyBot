@@ -99,8 +99,23 @@ class PolygonsVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PolygonsParser#regular.
+    def visitRegular(self, ctx:PolygonsParser.RegularContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PolygonsParser#draw.
     def visitDraw(self, ctx:PolygonsParser.DrawContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PolygonsParser#paint.
+    def visitPaint(self, ctx:PolygonsParser.PaintContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PolygonsParser#unpaint.
+    def visitUnpaint(self, ctx:PolygonsParser.UnpaintContext):
         return self.visitChildren(ctx)
 
 

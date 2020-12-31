@@ -8,35 +8,52 @@ DECIMAL_NUM = 3
 
 class ConvexPolygon:
 
-    coordinates = []
-    color = (0, 0, 0)
+    __coordinates = []
+    __color = (0, 0, 0)
+    __paint = False
 
     def __init__(self, coordinates):
         '''Construct a convex polygon given by
         the coordinates of a set of points'''
 
-        # tengo que normalizar las coord
-        coordinates = ConvexPolygon.convexHull(coordinates)
-        self.color = (0, 0, 0)
-        self.coordinates = coordinates
+        coordinates = ConvexPolygon.__convexHull(coordinates)
+        self.__color = (0, 0, 0)
+        self.__paint = False
+        self.__coordinates = coordinates
+
+    def getCoordinates(self):
+        ''' Get the coordinates of the polygon '''
+
+        return self.__coordinates
+
+    def addColor(self, color):
+        ''' Add color to a convex polygon'''
+
+        colorRGB = tuple([int(RGB * x) for x in color])
+        self.__color = colorRGB
+
+    def setPaint(self, paint):
+        ''' Set the color fill of the polygon '''
+
+        self.__paint = paint
 
     def containsPoint(self, point):
         '''Check whether a point is inside
         another convex polygon'''
 
-        n = len(self.coordinates)
+        n = len(self.__coordinates)
         # empty
         if n == 0:
             return False
         # monogon
         if n == 1:
-            return self.coordinates[0] == point
+            return self.__coordinates[0] == point
 
         A, B, C = [], [], []
 
         for i in range(n):
-            c1 = self.coordinates[i]
-            c2 = self.coordinates[(i + 1) % n]
+            c1 = self.__coordinates[i]
+            c2 = self.__coordinates[(i + 1) % n]
 
             # A, B and C computation
             a = -(c2[1] - c1[1])
@@ -61,38 +78,39 @@ class ConvexPolygon:
         '''Check whether a convex polygon is
         inside another convex polygon '''
 
-        return all(self.containsPoint(point) for point in polygon.coordinates)
+        ret = all(self.containsPoint(point) for point in polygon.__coordinates)
+        return ret
 
     def getVerticesEdges(self):
         '''Get the number of vertices
         and edges of a convex polygon'''
 
-        return len(self.coordinates)
+        return len(self.__coordinates)
 
     def getPerimeter(self):
         '''Get the length of the perimeter of
         a convex polygon'''
 
         length = 0
-        for i in range(len(self.coordinates)):
-            c1 = self.coordinates[i]
-            c2 = self.coordinates[(i + 1) % len(self.coordinates)]
-            length += ConvexPolygon.distance(c1, c2)
+        for i in range(len(self.__coordinates)):
+            c1 = self.__coordinates[i]
+            c2 = self.__coordinates[(i + 1) % len(self.__coordinates)]
+            length += ConvexPolygon.__distance(c1, c2)
         return round(length, DECIMAL_NUM)
 
     def getArea(self):
         ''' Get the area of a convex polygon'''
 
-        n = len(self.coordinates)
+        n = len(self.__coordinates)
         sum1, sum2 = 0, 0
         for i in range(n):
             index = (i + 1) % n
-            prod = self.coordinates[i][0] * self.coordinates[index][1]
+            prod = self.__coordinates[i][0] * self.__coordinates[index][1]
             sum1 += prod
 
         for i in range(n):
             index = (i + 1) % n
-            prod = self.coordinates[index][0] * self.coordinates[i][1]
+            prod = self.__coordinates[index][0] * self.__coordinates[i][1]
             sum2 += prod
 
         return round(abs(sum1 - sum2) / 2, DECIMAL_NUM)
@@ -101,17 +119,17 @@ class ConvexPolygon:
         '''Get the coordinates of the centroid of
         a convex polygon'''
 
-        n = len(self.coordinates)
+        n = len(self.__coordinates)
         # empty
         if n == 0:
             return []
         # monogon
         if n == 1:
-            return self.coordinates[0]
+            return self.__coordinates[0]
         # digon
         if n == 2:
-            c1 = self.coordinates[0]
-            c2 = self.coordinates[1]
+            c1 = self.__coordinates[0]
+            c2 = self.__coordinates[1]
             c1[0] = round(float(c1[0] + c2[0]) / 2, DECIMAL_NUM)
             c1[1] = round(float(c1[1] + c2[1]) / 2, DECIMAL_NUM)
             return c1
@@ -119,8 +137,8 @@ class ConvexPolygon:
         centroid = [0, 0]
         det = 0
         for i in range(n):
-            c1 = self.coordinates[i]
-            c2 = self.coordinates[(i + 1) % n]
+            c1 = self.__coordinates[i]
+            c2 = self.__coordinates[(i + 1) % n]
 
             # calculate the determinant
             det_aux = c1[0] * c2[1] - c2[0] * c1[1]
@@ -137,13 +155,13 @@ class ConvexPolygon:
         '''Check if a convex polygon is regular'''
 
         dist = 0
-        for i in range(len(self.coordinates)):
-            c1 = self.coordinates[i]
-            c2 = self.coordinates[(i + 1) % len(self.coordinates)]
+        for i in range(len(self.__coordinates)):
+            c1 = self.__coordinates[i]
+            c2 = self.__coordinates[(i + 1) % len(self.__coordinates)]
             if i != 0:
-                if dist != ConvexPolygon.distance(c1, c2):
+                if dist != ConvexPolygon.__distance(c1, c2):
                     return False
-            dist = ConvexPolygon.distance(c1, c2)
+            dist = ConvexPolygon.__distance(c1, c2)
         return True
 
     def intersection(self, polygon):
@@ -155,17 +173,17 @@ class ConvexPolygon:
     def union(self, polygon):
         '''Compute the convex union of two convex polygons'''
 
-        union = self.coordinates + polygon.coordinates
-        return ConvexPolygon.convexHull(union)
+        union = self.__coordinates + polygon.__coordinates
+        return ConvexPolygon.__convexHull(union)
 
     def boundingBox(self):
         '''Compute the bounding box of a convex polygon'''
 
         # empty
-        if len(self.coordinates) == 0:
+        if len(self.__coordinates) == 0:
             return []
 
-        x, y = zip(*self.coordinates)
+        x, y = zip(*self.__coordinates)
         x_min = min(x)
         x_max = max(x)
         y_min = min(y)
@@ -175,8 +193,8 @@ class ConvexPolygon:
     def isEqual(self, polygon):
         '''Check if two convex polygons are equals'''
 
-        return (self.coordinates == polygon.coordinates and
-                self.color == polygon.color)
+        return (self.__coordinates == polygon.__coordinates and
+                self.__color == polygon.__color)
 
     def draw(polygons, nameImg):
         '''Draw convex polygons (with colors)
@@ -185,22 +203,19 @@ class ConvexPolygon:
         image = Image.new('RGB', (RAW, RAW), color=(255, 255, 255))
         draw = ImageDraw.Draw(image)
 
-        center = ConvexPolygon.calculate(polygons)
+        center = ConvexPolygon.__center(polygons)
         for i in polygons:
             polygon = tuple([(SCALE * ((x[0] * 0.5)/float(center[0])),
                             SCALE - (SCALE * ((x[1] * 0.5)/float(center[1]))))
-                            for x in i.coordinates])
-            draw.polygon(polygon, outline=i.color)
+                            for x in i.__coordinates])
+            if i.__paint:
+                draw.polygon(polygon, fill=i.__color)
+            else:
+                draw.polygon(polygon, outline=i.__color)
         image.save(nameImg)
 
-    def addColor(self, color):
-        ''' Add color to a convex polygon'''
-
-        colorRGB = tuple([int(RGB * x) for x in color])
-        self.color = colorRGB
-
     @staticmethod
-    def convexHull(coordinates):
+    def __convexHull(coordinates):
         '''Compute the convex hull given a set of coordinates'''
 
         # empty and monogon skip
@@ -226,8 +241,8 @@ class ConvexPolygon:
             for c2 in coordinates:
                 if c2 is coord or c2 is c1:
                     continue
-                direction = ConvexPolygon.getOrientation(coord, far_coord, c2)
-                if direction > 0:
+                direct = ConvexPolygon.__getOrientation(coord, far_coord, c2)
+                if direct > 0:
                     far_coord = c2
 
             hull.append(far_coord)
@@ -236,7 +251,7 @@ class ConvexPolygon:
         return hull[:-1]
 
     @staticmethod
-    def getOrientation(origin, c1, c2):
+    def __getOrientation(origin, c1, c2):
         '''Get the direction from a origin point
         to two other points'''
 
@@ -245,7 +260,7 @@ class ConvexPolygon:
         return p1[0] * p2[1] - p2[0] * p1[1]
 
     @staticmethod
-    def distance(c1, c2):
+    def __distance(c1, c2):
         '''Distance between two points'''
 
         xd = c1[0] - c2[0]
@@ -253,10 +268,11 @@ class ConvexPolygon:
         return (xd ** 2 + yd ** 2) ** 0.5
 
     @staticmethod
-    def calculate(polygons):
+    def __center(polygons):
+        '''Get the center of a set of polygons'''
         vectors = []
         for i in polygons:
-            vectors += i.coordinates
+            vectors += i.__coordinates
         pol1 = ConvexPolygon(vectors)
         boundingBx = pol1.boundingBox()
         pol2 = ConvexPolygon(boundingBx)

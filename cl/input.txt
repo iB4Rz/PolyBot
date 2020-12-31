@@ -16,10 +16,12 @@ equal p1, p2
 inside p1, p2
 inside [0.8 0.2], p2
 
+paint p2
 draw "image.png", p1, p2
 
 print "---"
 
+regular p1 + p2
 print p1 + p2                           // convex union
 print p1 * p2                           // intersection
 print #p2                               // bounding box

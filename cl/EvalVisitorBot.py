@@ -1,6 +1,6 @@
 # Generated from Polygons.g by ANTLR 4.7.2
 import sys
-from antlr4 import *
+from antlr4 import *         
 import copy
 import random
 sys.path.append("..")
@@ -147,7 +147,7 @@ class EvalVisitorBot(PolygonsVisitor):
         if type(pol) is str:
             return pol
         else:
-            coord = pol.coordinates
+            coord = pol.getCoordinates()
             return (' '.join([str("%0.3f" % i) for tup in coord for i in tup]))
 
     # Visit a parse tree produced by PolygonsParser#area.
@@ -197,6 +197,13 @@ class EvalVisitorBot(PolygonsVisitor):
         inside2 = pol2.containsPolygon(pol1)
         return inside1 or inside2
 
+    # Visit a parse tree produced by PolygonsParser#regular.
+    def visitRegular(self, ctx: PolygonsParser.RegularContext):
+        list = [n for n in ctx.getChildren()]
+        pol = self.visit(list[1])
+        regular = pol.isRegular()
+        return regular
+
     # Visit a parse tree produced by PolygonsParser#equal.
     def visitEqual(self, ctx: PolygonsParser.EqualContext):
         list = [n for n in ctx.getChildren()]
@@ -212,6 +219,26 @@ class EvalVisitorBot(PolygonsVisitor):
         polygons = []
         polygons = self.visit(list[3])
         ConvexPolygon.draw(polygons, nameImg)
+
+    # Visit a parse tree produced by PolygonsParser#paint.
+    def visitPaint(self, ctx: PolygonsParser.PaintContext):
+        list = [n for n in ctx.getChildren()]
+        polygons = self.visit(list[1])
+        for pol in polygons:
+            for key, value in self.dict.items():
+                if value.isEqual(pol):
+                    pol.setPaint(True)
+                    self.dict[key] = pol
+
+    # Visit a parse tree produced by PolygonsParser#unpaint.
+    def visitUnpaint(self, ctx: PolygonsParser.UnpaintContext):
+        list = [n for n in ctx.getChildren()]
+        polygons = self.visit(list[1])
+        for pol in polygons:
+            for key, value in self.dict.items():
+                if value.isEqual(pol):
+                    pol.setPaint(False)
+                    self.dict[key] = pol
 
 
 del PolygonsParser

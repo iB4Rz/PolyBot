@@ -27,7 +27,10 @@ instruction:  printPol
             | color
             | inside
             | equal
+            | regular
             | draw
+            | paint
+            | unpaint
             ;
 
 // coords: '[' ( (NUM | R) (NUM | R) )* ']';
@@ -45,7 +48,10 @@ centroid: 'centroid' operation;
 color: 'color' operation ',' colorRGB;
 inside: 'inside' operation ',' operation;
 equal: 'equal' operation ',' operation;
+regular: 'regular' operation;
 draw: 'draw' img ',' polygons;
+paint: 'paint' polygons;
+unpaint: 'unpaint' polygons;
 
 NUM: [0-9]+;
 ID : [a-zA-Z]+('_')?[a-zA-Z0-9]*;
