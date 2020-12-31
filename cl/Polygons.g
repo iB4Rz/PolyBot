@@ -4,9 +4,7 @@ root: expr+ EOF;
 
 expr: variable | instruction;
 
-variable: ID ':=' operation
-        //| ID ':=' coords
-        ;
+variable: ID ':=' operation;
 
 operation: '(' operation ')'
         | EXC NUM
@@ -15,8 +13,6 @@ operation: '(' operation ')'
         | operation MES operation
         | coords
         | ID
-        //| R
-        //| NUM
         ;
 
 instruction:  printPol
@@ -33,7 +29,6 @@ instruction:  printPol
             | unpaint
             ;
 
-// coords: '[' ( (NUM | R) (NUM | R) )* ']';
 coords: '[' ( (NUM | R) (NUM | R) )* ']';
 colorRGB: '{' (NUM  |R) (NUM | R) (NUM | R) '}';
 img: '"'ID'.png"';

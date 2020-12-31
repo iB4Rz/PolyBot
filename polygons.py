@@ -203,11 +203,20 @@ class ConvexPolygon:
         image = Image.new('RGB', (RAW, RAW), color=(255, 255, 255))
         draw = ImageDraw.Draw(image)
 
-        center = ConvexPolygon.__center(polygons)
+        center, maxX, minX, maxY, minY = ConvexPolygon.__center(polygons)
+        scale = max(maxX - minX, maxY - minY)
         for i in polygons:
-            polygon = tuple([(SCALE * ((x[0] * 0.5)/float(center[0])),
-                            SCALE - (SCALE * ((x[1] * 0.5)/float(center[1]))))
-                            for x in i.__coordinates])
+            polygon = []
+            for p in i.__coordinates:
+                px = p[0] - (maxX + minX) / 2
+                py = p[1] - (maxY + minY) / 2
+                px /= scale
+                py /= scale
+                px += 0.5
+                py += 0.5
+                px *= SCALE
+                py = SCALE - py*SCALE
+                polygon.append((px, py))
             if i.__paint:
                 draw.polygon(polygon, fill=i.__color)
             else:
@@ -270,6 +279,7 @@ class ConvexPolygon:
     @staticmethod
     def __center(polygons):
         '''Get the center of a set of polygons'''
+
         vectors = []
         for i in polygons:
             vectors += i.__coordinates
@@ -277,4 +287,18 @@ class ConvexPolygon:
         boundingBx = pol1.boundingBox()
         pol2 = ConvexPolygon(boundingBx)
         center = pol2.getCoordCentroid()
-        return center
+        maxX = boundingBx[3][0]
+        maxY = boundingBx[1][1]
+        minX = boundingBx[1][0]
+        minY = boundingBx[3][1]
+        return center, maxX, minX, maxY, minY
+    
+    @staticmethod
+    def __scale(coordinates):
+        x = abs(coordinates[0][0] - coordinates[1][0])
+        y = abs(coordinates[0][1] - coordinates[1][1])
+        dx = SCALE - x
+        dy = SCALE - y
+        return min(dx, dy)
+
+

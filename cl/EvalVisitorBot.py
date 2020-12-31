@@ -128,7 +128,13 @@ class EvalVisitorBot(PolygonsVisitor):
     # Visit a parse tree produced by PolygonsParser#lines.
     def visitText(self, ctx: PolygonsParser.TextContext):
         list = [n for n in ctx.getChildren()]
-        text = list[1].getText()
+        text = ""
+        i = 1
+        while i < len(list)-1:
+            if i != 1: 
+                text += " "
+            text += list[i].getText()
+            i += 1
         return text
 
     # Visit a parse tree produced by PolygonsParser#polygons.
