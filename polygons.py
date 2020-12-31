@@ -78,7 +78,7 @@ class ConvexPolygon:
         '''Check whether a convex polygon is
         inside another convex polygon '''
 
-        ret = all(self.containsPoint(point) for point in polygon.__coordinates)
+        ret = all(polygon.containsPoint(point) for point in self.__coordinates)
         return ret
 
     def getVerticesEdges(self):

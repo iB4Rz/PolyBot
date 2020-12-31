@@ -5,9 +5,9 @@ from telegram.ext import MessageHandler, Filters
 from telegram import ParseMode
 sys.path.append("..")
 if __name__ is not None and "." in __name__:
-    from cl.test_script import getVisitor
+    from cl.TestScript import getVisitor
 else:
-    from cl.test_script import getVisitor
+    from cl.TestScript import getVisitor
 
 
 def start(update, context):
@@ -25,7 +25,8 @@ def help(update, context):
     - */example*: Example of everything I can do
     *Polygon commands:*
     print, area, perimeter, vertices, centroid, color, inside,
-    equal, draw, intersection, convex union, bounding box ...
+    equal, draw, intersection, convex union, bounding box, regular,
+    pain, unpaint ...
     '''
     context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -47,6 +48,7 @@ def example(update, context):
     perimeter p1
     vertices p1
     centroid p1
+    regular p1
     print "---"
     p2 := [0 0  1 0  1 1]
     color p2, {0 1 0}
@@ -54,7 +56,9 @@ def example(update, context):
     equal p1, p2
     inside p1, p2
     inside [0.8 0.2], p2
+    paint p2
     draw "image.png", p1, p2
+    unpaint p2
     print p1 + p2
     print p1 * p2
     print #p2
