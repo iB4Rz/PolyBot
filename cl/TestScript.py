@@ -13,7 +13,7 @@ else:
     from EvalVisitorBot import EvalVisitorBot
 
 
-# Eval Visitor to PolyBot
+# Eval Visitor for the PolyBot
 def getVisitor(input):
 
     input_stream = InputStream(input)
@@ -28,7 +28,8 @@ def getVisitor(input):
     visitor = EvalVisitorBot()
     return visitor.visit(tree)
 
-# Eval Visitor to PolyBot
+
+# Testing Eval Visitor
 if __name__ == "__main__":
     entrada = sys.stdin.read()
     input_stream = InputStream(entrada)
@@ -48,7 +49,7 @@ if __name__ == "__main__":
 # Descomentar per fer de linia en lina en el terminal
 '''
 if __name__ == "__main__":
-    
+
     for line in sys.stdin:
 
         input_stream = InputStream(line)

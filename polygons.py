@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw
 
-RAW = 400
-SCALE = 398
+PIXELS = 400           # Image size in pixels
+SCALE = 398            # Image pixel fit
 RGB = 255
 DECIMAL_NUM = 3
 
@@ -200,7 +200,7 @@ class ConvexPolygon:
         '''Draw convex polygons (with colors)
         in a PNG image'''
 
-        image = Image.new('RGB', (RAW, RAW), color=(255, 255, 255))
+        image = Image.new('RGB', (PIXELS, PIXELS), color=(255, 255, 255))
         draw = ImageDraw.Draw(image)
 
         maxX, minX, maxY, minY = ConvexPolygon.__minMax(polygons)
