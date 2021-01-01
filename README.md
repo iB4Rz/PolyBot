@@ -1,4 +1,4 @@
-<img align="left" width="80" height="80" src="img/Pol.png">
+<img align="left" width="80" height="80" src="img/Polybot.png">
 
 # PolyBot
 
@@ -32,15 +32,15 @@
             </ul>
       </ul>
     </li>
+    <li><a href="#example-chat">Example Chat</a></li>
     <li><a href="#references">References</a></li>
     <li><a href="#author-info">Author Info</a></li>
-    <li><a href="#example-chat">Example Chat</a></li>
   </ol>
 </details>
 
 ## About The Project
 
-Aqui se escribe algo
+Aquest projecte tracte sobre la implementació d'un bot de Telegram que respon textualment i gràficament a operacions relacionades amb polígons convexos.
 
 ### Built With
 
@@ -111,7 +111,7 @@ Per utilitzar el bot s'ha d'executar la següent comanda des de la carpeta **bot
 python3 bot.py
 ```
 
-Un cop executat, el bot estarà actiu. Llavors si es va a l'aplicació Telegram i es busca `@itsPolyBot` et trobaràs el bot amb el qual podràs xatejar. El bot es diu Polybot i podràs interactuar amb ell a partir de certes commandes especificades a la secció [Bot Interaction](#botinteraction).
+Un cop executat, el bot estarà actiu. Llavors si es va a l'aplicació Telegram i es busca `@itsPolyBot` et trobaràs el bot amb el qual podràs xatejar. El bot es diu Polybot i podràs interactuar amb ell a partir de certes commandes especificades a la secció [Bot Interaction](#bot-interaction).
 
 ## Bot Interaction
 

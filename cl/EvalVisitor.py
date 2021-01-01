@@ -133,7 +133,7 @@ class EvalVisitor(PolygonsVisitor):
         text = ""
         i = 1
         while i < len(list)-1:
-            if i != 1: 
+            if i != 1:
                 text += " "
             text += list[i].getText()
             i += 1

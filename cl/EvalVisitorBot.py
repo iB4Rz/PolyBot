@@ -1,6 +1,6 @@
 # Generated from Polygons.g by ANTLR 4.7.2
 import sys
-from antlr4 import *         
+from antlr4 import *
 import copy
 import random
 sys.path.append("..")
@@ -131,7 +131,7 @@ class EvalVisitorBot(PolygonsVisitor):
         text = ""
         i = 1
         while i < len(list)-1:
-            if i != 1: 
+            if i != 1:
                 text += " "
             text += list[i].getText()
             i += 1
