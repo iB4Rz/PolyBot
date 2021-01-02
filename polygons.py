@@ -22,18 +22,18 @@ class ConvexPolygon:
         self.__coordinates = coordinates
 
     def getCoordinates(self):
-        ''' Get the coordinates of the polygon '''
+        '''Get the coordinates of the polygon'''
 
         return self.__coordinates
 
     def addColor(self, color):
-        ''' Add color to a convex polygon'''
+        '''Add color to a convex polygon'''
 
         colorRGB = tuple([int(RGB * x) for x in color])
         self.__color = colorRGB
 
     def setPaint(self, paint):
-        ''' Set the color fill of the polygon '''
+        '''Set the color fill of the polygon'''
 
         self.__paint = paint
 
@@ -76,7 +76,7 @@ class ConvexPolygon:
 
     def containsPolygon(self, polygon):
         '''Check whether a convex polygon is
-        inside another convex polygon '''
+        inside another convex polygon'''
 
         ret = all(polygon.containsPoint(point) for point in self.__coordinates)
         return ret
@@ -99,7 +99,7 @@ class ConvexPolygon:
         return round(length, DECIMAL_NUM)
 
     def getArea(self):
-        ''' Get the area of a convex polygon'''
+        '''Get the area of a convex polygon'''
 
         n = len(self.__coordinates)
         sum1, sum2 = 0, 0

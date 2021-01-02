@@ -1,4 +1,3 @@
---upgrade pip
---upgrade Pillow
+Pillow
 python-telegram-bot
 antlr4-python3-runtime

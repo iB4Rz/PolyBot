@@ -60,6 +60,7 @@ Aquestes instruccions us proporcionaran una còpia del projecte en funcionament 
 Abans de tot per al bon funcionament del projecte es requereix:
 
 * Python3
+* ANTLR4
 * Altres requeriments:
 
 ```sh
