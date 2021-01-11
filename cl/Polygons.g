@@ -48,10 +48,11 @@ draw: 'draw' img ',' polygons;
 paint: 'paint' polygons;
 unpaint: 'unpaint' polygons;
 
-NUM: [0-9]+;
+NUM: S?[0-9]+;
 ID : [a-zA-Z]+('_')?[a-zA-Z0-9]*;
-R: [0-9]* '.' [0-9]+;
+R: S? ([0-9]+ '.' [0-9]*)| ([0-9]* '.' [0-9]+);
 G: ('-')+;
+S: '-';
 
 MUL: '*';   // represents the intersection of two polygons.
 MES: '+';   // represents the convex union of two polygons.
